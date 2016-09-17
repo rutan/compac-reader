@@ -1,4 +1,4 @@
-package com.compacreader;
+package com.toripota.compacreader;
 
 import com.facebook.react.ReactActivity;
 
