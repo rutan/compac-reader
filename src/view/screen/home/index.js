@@ -5,8 +5,21 @@ import {
     View
 } from 'react-native';
 import { connect } from 'react-redux';
+import StatusBarAndroid from 'react-native-android-statusbar';
+
+import color from '../../../config/color';
 
 class HomeScreen extends React.Component {
+    static navigatorStyle = {
+        navBarTextColor: color.textForTheme,
+        navBarBackgroundColor: color.theme,
+        statusBarTextColorScheme: 'light'
+    };
+
+    componentDidMount() {
+        StatusBarAndroid.setHexColor(color.statusBar);
+    }
+
     render() {
         return (
             <View style={styles.container}>

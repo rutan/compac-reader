@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.reactnativenavigation.NavigationApplication;
+import me.neo.react.StatusBarPackage;
 
 public class MainApplication extends NavigationApplication {
     @Override
@@ -23,8 +24,8 @@ public class MainApplication extends NavigationApplication {
 
     @Override
     public List<ReactPackage> createAdditionalReactPackages() {
-        // Add the packages you require here.
-        // No need to add RnnPackage and MainReactPackage
-        return null;
+        return Arrays.<ReactPackage>asList(
+                new StatusBarPackage()
+        );
     }
 }
