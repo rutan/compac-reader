@@ -12,24 +12,19 @@ import com.facebook.react.shell.MainReactPackage;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainApplication extends Application implements ReactApplication {
+import com.reactnativenavigation.NavigationApplication;
 
-  private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+public class MainApplication extends NavigationApplication {
     @Override
-    protected boolean getUseDeveloperSupport() {
-      return BuildConfig.DEBUG;
+    public boolean isDebug() {
+        // Make sure you are using BuildConfig from your own application
+        return BuildConfig.DEBUG;
     }
 
     @Override
-    protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
-          new MainReactPackage()
-      );
+    public List<ReactPackage> createAdditionalReactPackages() {
+        // Add the packages you require here.
+        // No need to add RnnPackage and MainReactPackage
+        return null;
     }
-  };
-
-  @Override
-  public ReactNativeHost getReactNativeHost() {
-      return mReactNativeHost;
-  }
 }
