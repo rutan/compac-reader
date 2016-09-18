@@ -12,6 +12,7 @@ import Ionicon from 'react-native-vector-icons/Ionicons';
 import {screenNames} from '../../../config/router';
 import color from '../../../config/color';
 
+import SectionHeader from '../../component/section-header';
 import FloatingButton from '../../component/floating-button';
 import StoryList from './list';
 
@@ -54,11 +55,9 @@ class HomeScreen extends React.Component {
 
         return (
             <View style={styles.container}>
-                <View style={styles.sectionTitle}>
-                    <Text style={styles.sectionTitleText}>
-                        登録済みの小説 ({stories.length} 件)
-                    </Text>
-                </View>
+                <SectionHeader
+                    title={`登録済みの小説 (${stories.length} 件)`}
+                />
                 <ScrollView>
                     <StoryList
                         stories={stories}
@@ -88,14 +87,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#ffffff'
-    },
-    sectionTitle: {
-        height: 40
-    },
-    sectionTitleText: {
-        color: color.theme,
-        fontSize: 16,
-        margin: 10
     },
     instructions: {
         textAlign: 'center',

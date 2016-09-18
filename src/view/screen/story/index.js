@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     StyleSheet,
-    View
+    ScrollView
 } from 'react-native';
 import { connect } from 'react-redux';
 import StatusBarAndroid from 'react-native-android-statusbar';
@@ -10,6 +10,7 @@ import color from '../../../config/color';
 
 import StoryHeader from './header';
 import StoryAbstract from './abstract';
+import StoryEpisodes from './episodes';
 
 class StoryScreen extends React.Component {
     static navigatorStyle = {
@@ -49,11 +50,20 @@ class StoryScreen extends React.Component {
             } = this.props;
 
         return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
                 <StoryHeader story={story}/>
                 <StoryAbstract story={story}/>
-            </View>
+                <StoryEpisodes
+                    story={story}
+                    episodes={story.episodes || []}
+                    onPress={this.onSelectEpisode.bind(this)}
+                />
+            </ScrollView>
         );
+    }
+
+    onSelectEpisode(episode) {
+        console.log(episode);
     }
 }
 

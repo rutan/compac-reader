@@ -9,6 +9,8 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import color from '../../../config/color';
 
+import SectionHeader from '../../component/section-header';
+
 export default class StoryAbstract extends React.Component {
     static propTypes = {
         story: React.PropTypes.object.isRequired
@@ -31,13 +33,9 @@ export default class StoryAbstract extends React.Component {
 
         return (
             <View style={styles.container}>
-                <View style={styles.sectionTitle}>
-                    <Text
-                        style={styles.sectionTitleText}
-                    >
-                        あらすじ
-                    </Text>
-                </View>
+                <SectionHeader
+                    title="あらすじ"
+                />
                 <View
                     style={isOpen ? styles.bodyWithOpen : styles.bodyWithClose}
                     onLayout={this.onLayoutBody.bind(this)}
@@ -92,14 +90,6 @@ const bodyMaxHeight = 80;
 const styles = StyleSheet.create({
     container: {
         backgroundColor: color.back
-    },
-    sectionTitle: {
-        height: 40
-    },
-    sectionTitleText: {
-        color: color.theme,
-        fontSize: 16,
-        margin: 10
     },
     bodyWithOpen: {},
     bodyWithClose: {
