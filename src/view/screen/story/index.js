@@ -4,7 +4,6 @@ import {
     ScrollView
 } from 'react-native';
 import { connect } from 'react-redux';
-import StatusBarAndroid from 'react-native-android-statusbar';
 
 import {screenNames} from '../../../config/router';
 import color from '../../../config/color';
@@ -18,7 +17,8 @@ class StoryScreen extends React.Component {
         navBarTextColor: color.textForTheme,
         navBarButtonColor: color.textForTheme,
         navBarBackgroundColor: color.theme,
-        statusBarTextColorScheme: 'light'
+        statusBarTextColorScheme: 'light',
+        statusBarColor: color.statusBar
     };
 
     static navigatorButtons = {
@@ -39,7 +39,6 @@ class StoryScreen extends React.Component {
     componentDidMount() {
         const { story } = this.props;
 
-        StatusBarAndroid.setHexColor(color.statusBar);
         this.props.navigator.setTitle({
             title: story.title
         });

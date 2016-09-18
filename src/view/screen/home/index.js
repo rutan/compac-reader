@@ -5,7 +5,6 @@ import {
     ScrollView
 } from 'react-native';
 import { connect } from 'react-redux';
-import StatusBarAndroid from 'react-native-android-statusbar';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 
 import {screenNames} from '../../../config/router';
@@ -21,6 +20,7 @@ class HomeScreen extends React.Component {
         navBarButtonColor: color.textForTheme,
         navBarBackgroundColor: color.theme,
         statusBarTextColorScheme: 'light',
+        statusBarColor: color.statusBar
     };
 
     static navigatorButtons = {
@@ -42,10 +42,6 @@ class HomeScreen extends React.Component {
             }
         ]
     };
-
-    componentDidMount() {
-        StatusBarAndroid.setHexColor(color.statusBar);
-    }
 
     render() {
         const {

@@ -4,7 +4,6 @@ import {
     View
 } from 'react-native';
 import { connect } from 'react-redux';
-import StatusBarAndroid from 'react-native-android-statusbar';
 
 import color from '../../../config/color';
 
@@ -18,6 +17,7 @@ class ReaderScreen extends React.Component {
         navBarButtonColor: color.textForTheme,
         navBarBackgroundColor: color.theme,
         statusBarTextColorScheme: 'light',
+        statusBarColor: color.statusBar,
         navBarHidden: true
     };
 
@@ -29,10 +29,6 @@ class ReaderScreen extends React.Component {
             page: 0,
             pageMax: 1
         };
-    }
-
-    componentDidMount() {
-        StatusBarAndroid.setHexColor(color.statusBar);
     }
 
     render() {

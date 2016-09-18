@@ -13,7 +13,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.reactnativenavigation.NavigationApplication;
-import me.neo.react.StatusBarPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.github.alinz.reactnativewebviewbridge.WebViewBridgePackage;
@@ -28,7 +27,6 @@ public class MainApplication extends NavigationApplication {
     @Override
     public List<ReactPackage> createAdditionalReactPackages() {
         return Arrays.<ReactPackage>asList(
-                new StatusBarPackage(),
                 new VectorIconsPackage(),
                 new LinearGradientPackage(),
                 new WebViewBridgePackage()
