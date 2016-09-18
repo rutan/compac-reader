@@ -15,6 +15,7 @@ import java.util.List;
 import com.reactnativenavigation.NavigationApplication;
 import me.neo.react.StatusBarPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
+import com.BV.LinearGradient.LinearGradientPackage;
 
 public class MainApplication extends NavigationApplication {
     @Override
@@ -27,7 +28,8 @@ public class MainApplication extends NavigationApplication {
     public List<ReactPackage> createAdditionalReactPackages() {
         return Arrays.<ReactPackage>asList(
                 new StatusBarPackage(),
-                new VectorIconsPackage()
+                new VectorIconsPackage(),
+                new LinearGradientPackage()
         );
     }
 }

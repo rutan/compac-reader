@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import StatusBarAndroid from 'react-native-android-statusbar';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 
+import {screenNames} from '../../../config/router';
 import color from '../../../config/color';
 
 import FloatingButton from '../../component/floating-button';
@@ -74,7 +75,12 @@ class HomeScreen extends React.Component {
     }
 
     onSelectStory(story) {
-        console.log(story);
+        this.props.navigator.push({
+            screen: screenNames.story,
+            passProps: {
+                story
+            }
+        });
     }
 }
 
