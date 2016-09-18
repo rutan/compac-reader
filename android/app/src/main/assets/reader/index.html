@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <title>Compac Novel View</title>
+    <style>
+        @font-face {
+            font-family: 'CompacFont';
+            src: url('file:///android_asset/reader/ipam.ttf');
+        }
+    </style>
+</head>
+<body>
+<div id="app"></div>
+<script src="./bundle.js"></script>
+<script>
+    (function () {
+        function send(type, data) {
+            data = data || {};
+            window.WebViewBridge.send(JSON.stringify({
+                type: type,
+                data: data
+            }));
+        }
+
+        window.cnv = window.CompacNovelView.init(document.getElementById('app'));
+        window.initBridge = function () {
+            window.cnv.setHandler(send);
+            window.WebViewBridge.onMessage = function (messageString) {
+                try {
+                    var message = JSON.parse(decodeURIComponent(escape(atob(messageString))));
+                    switch (message.type) {
+                        case 'load':
+                            window.cnv.setPageRate(message.data.pageRate);
+                            window.cnv.setBody(message.data.body);
+                            break;
+                        case 'page':
+                            window.cnv.setPage(~~message.data);
+                            break;
+                        case 'pageRate':
+                            window.cnv.setPageRate(message.data);
+                            break;
+                        case 'fontName':
+                            window.cnv.setFontName(message.data);
+                            break;
+                        case 'fontSize':
+                            window.cnv.setFontSize(~~message.data);
+                            break;
+                        case 'requestPage':
+                            send('page', {
+                                page: window.cnv.getPage()
+                            });
+                            break;
+                        case 'requestPageMax':
+                            send('pageMax', {
+                                page: window.cnv.getPageMax()
+                            });
+                            break;
+                        default:
+                            send('error', {
+                                message: 'unknown command',
+                                receive: message
+                            });
+                    }
+                } catch (e) {
+                    send('error', e);
+                }
+            };
+
+            send('loaded');
+        };
+    })();
+</script>
+</body>
+</html>

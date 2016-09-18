@@ -8,6 +8,7 @@
     "lint": "eslint src"
   },
   "dependencies": {
+    "buffer": "^4.9.1",
     "cheerio": "^0.22.0",
     "es6-symbol": "^3.1.0",
     "events": "^1.1.1",
@@ -16,6 +17,7 @@
     "react-native-android-statusbar": "^0.1.3",
     "react-native-linear-gradient": "^1.5.12",
     "react-native-navigation": "git@github.com:rutan/react-native-navigation.git#patch",
+    "react-native-slider": "^0.9.1",
     "react-native-vector-icons": "^2.1.0",
     "react-native-webview-bridge": "^0.33.0",
     "react-redux": "^4.4.5",
