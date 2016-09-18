@@ -9,6 +9,9 @@ import StatusBarAndroid from 'react-native-android-statusbar';
 
 import color from '../../../config/color';
 
+import FloatingButton from '../../component/floating-button';
+import Icon from 'react-native-vector-icons/Ionicons';
+
 class HomeScreen extends React.Component {
     static navigatorStyle = {
         navBarTextColor: color.textForTheme,
@@ -33,6 +36,11 @@ class HomeScreen extends React.Component {
                     Double tap R on your keyboard to reload,{'\n'}
                     Shake or press menu button for dev menu
                 </Text>
+                <FloatingButton
+                    style={styles.floatingButton}
+                >
+                    <Icon name="md-add" size={30} color="#ffffff"/>
+                </FloatingButton>
             </View>
         );
     }
@@ -54,6 +62,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#333333',
         marginBottom: 5
+    },
+    floatingButton: {
+        position: 'absolute',
+        right: 15,
+        bottom: 15
     }
 });
 
