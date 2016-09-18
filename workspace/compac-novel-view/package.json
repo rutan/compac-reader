@@ -1,0 +1,39 @@
+{
+  "name": "compac-novel-view",
+  "version": "0.1.0",
+  "description": "",
+  "scripts": {
+    "start": "webpack-dev-server --host 0.0.0.0",
+    "build": "webpack --optimize-minimize && cp ./_build/bundle.js ../../android/app/src/main/assets/reader"
+  },
+  "author": "ru_shalm <ru_shalm@hazimu.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-es2016": "^6.11.3",
+    "babel-runtime": "^6.11.6",
+    "css-loader": "^0.24.0",
+    "eslint": "^3.4.0",
+    "file-loader": "^0.9.0",
+    "node-sass": "^3.8.0",
+    "sass-loader": "^4.0.1",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.15.1"
+  },
+  "dependencies": {
+    "babel-plugin-transform-class-properties": "^6.11.5",
+    "babel-preset-react": "^6.11.1",
+    "events": "^1.1.1",
+    "jquery": "^3.1.0",
+    "normalize.css": "^4.2.0",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1"
+  }
+}

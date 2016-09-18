@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <title>Compac Novel View</title>
+    <style>
+        @font-face {
+            font-family: 'CompacFont';
+            src: url('./ipam.ttf');
+        }
+    </style>
+</head>
+<body>
+<div id="app"></div>
+<template id="template" data-src="./_data/sample.html"></template>
+<script src="./_build/bundle.js"></script>
+<script>
+    window.cnv = window.CompacNovelView.init(document.getElementById('app'));
+    (function () {
+        var tempalteElement = document.querySelectorAll('#template')[0];
+        fetch(tempalteElement.getAttribute('data-src')).then(function (resp) {
+            return resp.text();
+        }).then(function (text) {
+            window.cnv.setBody(text);
+        });
+    })();
+</script>
+</body>
+</html>
