@@ -9,6 +9,7 @@ export default {
 
     back: '#ffffff',
     text: '#444444',
+    textLight: '#999999',
 
     iconBack: '#81C784',
     logoText: '#78909C',

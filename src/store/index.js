@@ -16,5 +16,58 @@ export default function initStore() {
 }
 
 const initialState = {
-    launchTime: 0
+    launchTime: 0,
+    stories: [
+        // dummy data
+        {
+            title: 'タイトル',
+            authorName: '著者名',
+            lastUpdatedAt: Date.now()
+        },
+        {
+            title: 'タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトル',
+            authorName: '著者名著者名著者名著者名著者名著者名著者名著者名著者名著者名著者名著者名著者名著者名著者名著者名著者名',
+            lastUpdatedAt: Date.now()
+        },
+        {
+            title: 'タイトル',
+            authorName: '著者名',
+            lastUpdatedAt: Date.now()
+        },
+        {
+            title: 'タイトル',
+            authorName: '著者名',
+            lastUpdatedAt: Date.now()
+        },
+        {
+            title: 'タイトル',
+            authorName: '著者名',
+            lastUpdatedAt: Date.now()
+        },
+        {
+            title: 'タイトル',
+            authorName: '著者名',
+            lastUpdatedAt: Date.now()
+        },
+        {
+            title: 'タイトル',
+            authorName: '著者名',
+            lastUpdatedAt: Date.now()
+        },
+        {
+            title: 'タイトル',
+            authorName: '著者名',
+            lastUpdatedAt: Date.now()
+        },
+        {
+            title: 'タイトル',
+            authorName: '著者名',
+            lastUpdatedAt: Date.now()
+        },
+        {
+            title: 'タイトル',
+            authorName: '著者名',
+            lastUpdatedAt: Date.now()
+        },
+    ]
 };

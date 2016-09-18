@@ -2,15 +2,17 @@ import React from 'react';
 import {
     StyleSheet,
     Text,
-    View
+    View,
+    ScrollView
 } from 'react-native';
 import { connect } from 'react-redux';
 import StatusBarAndroid from 'react-native-android-statusbar';
+import Ionicon from 'react-native-vector-icons/Ionicons';
 
 import color from '../../../config/color';
 
 import FloatingButton from '../../component/floating-button';
-import Ionicon from 'react-native-vector-icons/Ionicons';
+import StoryList from './list';
 
 class HomeScreen extends React.Component {
     static navigatorStyle = {
@@ -45,18 +47,23 @@ class HomeScreen extends React.Component {
     }
 
     render() {
+        const {
+            stories
+            } = this.props;
+
         return (
             <View style={styles.container}>
-                <Text style={styles.welcome}>
-                    Welcome to React Native!
-                </Text>
-                <Text style={styles.instructions}>
-                    To get started, edit index.android.js
-                </Text>
-                <Text style={styles.instructions}>
-                    Double tap R on your keyboard to reload,{'\n'}
-                    Shake or press menu button for dev menu
-                </Text>
+                <View style={styles.sectionTitle}>
+                    <Text style={styles.sectionTitleText}>
+                        登録済みの小説 ({stories.length} 件)
+                    </Text>
+                </View>
+                <ScrollView>
+                    <StoryList
+                        stories={stories}
+                        onPress={this.onSelectStory.bind(this)}
+                    />
+                </ScrollView>
                 <FloatingButton
                     style={styles.floatingButton}
                 >
@@ -65,18 +72,23 @@ class HomeScreen extends React.Component {
             </View>
         );
     }
+
+    onSelectStory(story) {
+        console.log(story);
+    }
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF'
+        backgroundColor: '#ffffff'
     },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
+    sectionTitle: {
+        height: 40
+    },
+    sectionTitleText: {
+        color: color.theme,
+        fontSize: 16,
         margin: 10
     },
     instructions: {
@@ -91,8 +103,10 @@ const styles = StyleSheet.create({
     }
 });
 
-function mapStateToProps(_state) {
-    return {};
+function mapStateToProps(state) {
+    return {
+        stories: state.stories
+    };
 }
 
 export default connect(mapStateToProps)(HomeScreen);
