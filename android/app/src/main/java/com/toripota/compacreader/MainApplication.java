@@ -14,6 +14,7 @@ import java.util.List;
 
 import com.reactnativenavigation.NavigationApplication;
 import me.neo.react.StatusBarPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
 
 public class MainApplication extends NavigationApplication {
     @Override
@@ -25,7 +26,8 @@ public class MainApplication extends NavigationApplication {
     @Override
     public List<ReactPackage> createAdditionalReactPackages() {
         return Arrays.<ReactPackage>asList(
-                new StatusBarPackage()
+                new StatusBarPackage(),
+                new VectorIconsPackage()
         );
     }
 }

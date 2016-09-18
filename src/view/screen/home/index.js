@@ -10,13 +10,34 @@ import StatusBarAndroid from 'react-native-android-statusbar';
 import color from '../../../config/color';
 
 import FloatingButton from '../../component/floating-button';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Ionicon from 'react-native-vector-icons/Ionicons';
 
 class HomeScreen extends React.Component {
     static navigatorStyle = {
         navBarTextColor: color.textForTheme,
+        navBarButtonColor: color.textForTheme,
         navBarBackgroundColor: color.theme,
         statusBarTextColorScheme: 'light'
+    };
+
+    static navigatorButtons = {
+        rightButtons: [
+            {
+                id: 'version',
+                title: 'バージョン情報',
+                showAsAction: 'never'
+            },
+            {
+                id: 'settings',
+                title: '設定',
+                showAsAction: 'never'
+            },
+            {
+                id: 'refresh',
+                title: '小説を更新',
+                showAsAction: 'never'
+            }
+        ]
     };
 
     componentDidMount() {
@@ -39,7 +60,7 @@ class HomeScreen extends React.Component {
                 <FloatingButton
                     style={styles.floatingButton}
                 >
-                    <Icon name="md-add" size={30} color="#ffffff"/>
+                    <Ionicon name="md-add" size={30} color="#ffffff"/>
                 </FloatingButton>
             </View>
         );
