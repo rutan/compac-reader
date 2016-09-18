@@ -16,6 +16,7 @@ import com.reactnativenavigation.NavigationApplication;
 import me.neo.react.StatusBarPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
+import com.github.alinz.reactnativewebviewbridge.WebViewBridgePackage;
 
 public class MainApplication extends NavigationApplication {
     @Override
@@ -29,7 +30,8 @@ public class MainApplication extends NavigationApplication {
         return Arrays.<ReactPackage>asList(
                 new StatusBarPackage(),
                 new VectorIconsPackage(),
-                new LinearGradientPackage()
+                new LinearGradientPackage(),
+                new WebViewBridgePackage()
         );
     }
 }

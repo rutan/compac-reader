@@ -1,11 +1,8 @@
 import React from 'react';
 import {
     StyleSheet,
-    Text,
     View
 } from 'react-native';
-
-import color from '../../../../config/color';
 
 import SectionHeader from '../../../component/section-header';
 import EpisodeList from './list';

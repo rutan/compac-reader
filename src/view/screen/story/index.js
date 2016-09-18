@@ -6,6 +6,7 @@ import {
 import { connect } from 'react-redux';
 import StatusBarAndroid from 'react-native-android-statusbar';
 
+import {screenNames} from '../../../config/router';
 import color from '../../../config/color';
 
 import StoryHeader from './header';
@@ -45,9 +46,7 @@ class StoryScreen extends React.Component {
     }
 
     render() {
-        const {
-            story
-            } = this.props;
+        const {story} = this.props;
 
         return (
             <ScrollView style={styles.container}>
@@ -63,7 +62,15 @@ class StoryScreen extends React.Component {
     }
 
     onSelectEpisode(episode) {
-        console.log(episode);
+        const {story} = this.props;
+
+        this.props.navigator.push({
+            screen: screenNames.reader,
+            passProps: {
+                story,
+                episode
+            }
+        });
     }
 }
 

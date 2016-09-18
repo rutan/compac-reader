@@ -144,6 +144,9 @@ const initialState = {
             authorName: '著者名',
             description: '説明文',
             lastUpdatedAt: Date.now()
-        },
-    ]
+        }
+    ],
+    readingEpisode: {
+        body: '本文'
+    }
 };

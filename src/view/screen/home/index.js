@@ -1,7 +1,6 @@
 import React from 'react';
 import {
     StyleSheet,
-    Text,
     View,
     ScrollView
 } from 'react-native';
@@ -21,7 +20,7 @@ class HomeScreen extends React.Component {
         navBarTextColor: color.textForTheme,
         navBarButtonColor: color.textForTheme,
         navBarBackgroundColor: color.theme,
-        statusBarTextColorScheme: 'light'
+        statusBarTextColorScheme: 'light',
     };
 
     static navigatorButtons = {
