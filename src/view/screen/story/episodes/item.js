@@ -39,7 +39,7 @@ export default class EpisodeItem extends React.Component {
                         </Text>
                         {
                             (() => {
-                                if (!episode.revisedAt || episode.revisedAt === 0) return null;
+                                if (!episode.revisedAt || episode.revisedAt <= episode.publishedAt) return null;
                                 return (
                                     <Text style={styles.revisedAt}>
                                         更新日: {TimeFormatter.toDate(episode.revisedAt)}
@@ -59,7 +59,8 @@ export default class EpisodeItem extends React.Component {
             episode
             } = this.props;
 
-        if (story.bookmark.episodeId !== episode.episodeId) return null;
+        // FIXME
+        if (story.bookmark && story.bookmark.episodeId !== episode.episodeId) return null;
 
         return (
             <View style={styles.bookmark}/>

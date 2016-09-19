@@ -20,6 +20,7 @@
     "react-native-vector-icons": "^2.1.0",
     "react-native-webview-bridge": "^0.33.0",
     "react-redux": "^4.4.5",
+    "realm": "^0.14.3",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0"
   },

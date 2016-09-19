@@ -129,6 +129,7 @@ android {
 }
 
 dependencies {
+    compile project(':realm')
     compile project(':react-native-webview-bridge')
     compile project(':react-native-linear-gradient')
     compile project(':react-native-vector-icons')

@@ -4,7 +4,6 @@ import * as StoryAPI from '../../back/api/story';
 
 export const LOAD_ALL = Symbol('LOAD_ALL');
 export const REFRESH_ALL = Symbol('REFRESH_ALL');
-export const ADD = Symbol('ADD');
 
 export function loadAll() {
     return (dispatch) => {
@@ -51,10 +50,7 @@ export function fetch(publisherType, publisherCode) {
                 if (!story.bookmark) {
                     story.bookmark = {};
                 }
-                dispatch({
-                    type: ADD,
-                    payload: story
-                });
+                dispatch(loadAll());
                 dispatch(loading.finish());
             })
             .catch((e) => {

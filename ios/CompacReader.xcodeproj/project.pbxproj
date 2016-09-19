@@ -34,6 +34,9 @@
 		547C61184D0645299E1B2908 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFCD796E30C04167BB03CD1C /* Zocial.ttf */; };
 		F7396B20D6454F26AC344D3B /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A942FE3D09C245EFA091589D /* libBVLinearGradient.a */; };
 		A56FAC077AA74CCA96767361 /* libReact-Native-Webview-Bridge.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0D9DA7E0804A0DB1EA72C4 /* libReact-Native-Webview-Bridge.a */; };
+		D300310B614C4925BF1CC57F /* libRealmReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB3C2366767E4BB18EA7F8D8 /* libRealmReact.a */; };
+		98369D260D11491C9D741AA4 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE77BA87FA24644BD4159B6 /* libc++.tbd */; };
+		63AA6096B8D049F388C936EB /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9D02469D1941C982A78C95 /* libz.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,6 +157,10 @@
 		A942FE3D09C245EFA091589D /* libBVLinearGradient.a */ = {isa = PBXFileReference; name = "libBVLinearGradient.a"; path = "libBVLinearGradient.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		CC35A6CA0B5048CA8B1DD4EB /* React-Native-Webview-Bridge.xcodeproj */ = {isa = PBXFileReference; name = "React-Native-Webview-Bridge.xcodeproj"; path = "../node_modules/react-native-webview-bridge/ios/React-Native-Webview-Bridge.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		DB0D9DA7E0804A0DB1EA72C4 /* libReact-Native-Webview-Bridge.a */ = {isa = PBXFileReference; name = "libReact-Native-Webview-Bridge.a"; path = "libReact-Native-Webview-Bridge.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		6CCD4328638F4521A1947255 /* RealmReact.xcodeproj */ = {isa = PBXFileReference; name = "RealmReact.xcodeproj"; path = "../node_modules/realm/react-native/ios/RealmReact.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		CB3C2366767E4BB18EA7F8D8 /* libRealmReact.a */ = {isa = PBXFileReference; name = "libRealmReact.a"; path = "libRealmReact.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		BBE77BA87FA24644BD4159B6 /* libc++.tbd */ = {isa = PBXFileReference; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
+		2B9D02469D1941C982A78C95 /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +190,9 @@
 				8F36607F86E54879A4184FA5 /* libRNVectorIcons.a in Frameworks */,
 				F7396B20D6454F26AC344D3B /* libBVLinearGradient.a in Frameworks */,
 				A56FAC077AA74CCA96767361 /* libReact-Native-Webview-Bridge.a in Frameworks */,
+				D300310B614C4925BF1CC57F /* libRealmReact.a in Frameworks */,
+				98369D260D11491C9D741AA4 /* libc++.tbd in Frameworks */,
+				63AA6096B8D049F388C936EB /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +319,7 @@
 				C826BEB439DE43DD901C6778 /* RNVectorIcons.xcodeproj */,
 				0C5184EDB1354FA48A673592 /* BVLinearGradient.xcodeproj */,
 				CC35A6CA0B5048CA8B1DD4EB /* React-Native-Webview-Bridge.xcodeproj */,
+				6CCD4328638F4521A1947255 /* RealmReact.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -329,6 +340,7 @@
 				00E356EF1AD99517003FC87E /* CompacReaderTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				8949F4F7DE404A6AA5A8F068 /* Resources */,
+				D46C5EE38E3C4A65AF1604F7 /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -356,6 +368,16 @@
 				AFCD796E30C04167BB03CD1C /* Zocial.ttf */,
 			);
 			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
+		D46C5EE38E3C4A65AF1604F7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BBE77BA87FA24644BD4159B6 /* libc++.tbd */,
+				2B9D02469D1941C982A78C95 /* libz.tbd */,
+			);
+			name = Frameworks;
 			path = "";
 			sourceTree = "<group>";
 		};
@@ -652,6 +674,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -668,6 +691,7 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CompacReader.app/CompacReader";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -689,6 +713,7 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-webview-bridge/ios",
+					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 				INFOPLIST_FILE = "CompacReader/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -713,6 +738,7 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-webview-bridge/ios",
+					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 				INFOPLIST_FILE = "CompacReader/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -767,6 +793,7 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-webview-bridge/ios",
+					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -811,6 +838,7 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-webview-bridge/ios",
+					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;

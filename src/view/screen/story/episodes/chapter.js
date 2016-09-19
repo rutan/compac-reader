@@ -21,9 +21,26 @@ export default class EpisodeChapter extends React.Component {
         level: 0
     };
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            isShowList: false
+        };
+    }
+
+    componentDidMount() {
+        const {
+            level,
+            } = this.props;
+
+        // 重いので一瞬遅れて描画させてみる
+        setTimeout(() => {
+            this.setState({isShowList: true});
+        }, (level + 1) * Math.random());
+    }
+
     render() {
         const {
-            story,
             episode,
             level
             } = this.props;
@@ -38,13 +55,26 @@ export default class EpisodeChapter extends React.Component {
                     size={isSlim ? 'slim' : 'medium'}
                     color={isSlim ? color.sub : color.theme}
                 />
-                <EpisodeList
-                    story={story}
-                    episodes={episode.children}
-                    level={level}
-                    onPress={this.props.onPress}
-                />
+                {this.state.isShowList ? this._renderList() : null}
             </View>
+        );
+    }
+
+    _renderList() {
+        const {
+            story,
+            episode,
+            level,
+            onPress
+            } = this.props;
+
+        return (
+            <EpisodeList
+                story={story}
+                episodes={episode.children}
+                level={level}
+                onPress={onPress}
+            />
         );
     }
 }

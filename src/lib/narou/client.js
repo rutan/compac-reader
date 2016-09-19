@@ -11,6 +11,7 @@ export function fetchStory(publisherCode) {
     const url = `${NCODE_URL_BASE}/${publisherCode}/`;
 
     return httpClient.fetchHTML(url).then(($) => {
+        const storyId = `narou__${publisherCode}`;
         const title = $('.novel_title').text();
         const authorName = $('.novel_writername a').text();
         const description = $('#novel_ex').text();
@@ -23,6 +24,8 @@ export function fetchStory(publisherCode) {
             if (type === 'header') {
                 const title = el.text();
                 const newChapter = {
+                    id: `narou__${publisherCode}__header-${i}`,
+                    storyId,
                     type,
                     title,
                     children: []
@@ -34,8 +37,10 @@ export function fetchStory(publisherCode) {
                 const title = el.find('.subtitle').text();
                 const luContents = el.find('.long_update').contents();
                 const publishedAt = parseDateFromString(luContents[0].data);
-                const revisedAt = luContents.length > 1 ? parseDateFromString($(luContents[1]).attr('title')) : 0;
+                const revisedAt = luContents.length > 1 ? parseDateFromString($(luContents[1]).attr('title')) : publishedAt;
                 chapter.push({
+                    id: `narou__${publisherCode}__${episodeId}`,
+                    storyId,
                     type,
                     episodeId,
                     title,
@@ -46,6 +51,7 @@ export function fetchStory(publisherCode) {
         }).get();
 
         return ({
+            id: storyId,
             publisherType: 'narou',
             publisherCode,
             title,

@@ -33,7 +33,10 @@ export default class SectionHeader extends React.Component {
 
         return (
             <View style={styleContainer}>
-                <Text style={styleText}>
+                <Text
+                    style={styleText}
+                    numberOfLines={1}
+                >
                     {title}
                 </Text>
             </View>
