@@ -48,8 +48,10 @@ class HomeScreen extends React.Component {
 
     componentDidMount() {
         const { dispatch, navigator } = this.props;
-        dispatch(StoryAction.loadAll());
         navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
+        setTimeout(() => {
+            dispatch(StoryAction.loadAll());
+        }, 0);
     }
 
     render() {

@@ -10,8 +10,7 @@ export default function () {
 
     Navigation.startSingleScreenApp({
         screen: {
-            screen: screenNames.home,
-            title: 'Compac Reader',
+            screen: screenNames.splash,
             navigatorStyle: {}
         }
     });

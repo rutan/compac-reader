@@ -1,4 +1,5 @@
 import { Navigation } from 'react-native-navigation';
+import SplashSceren from '../view/screen/splash';
 import HomeScreen from '../view/screen/home';
 import StoryScreen from '../view/screen/story';
 import ReaderScreen from '../view/screen/reader';
@@ -7,6 +8,7 @@ import BrowsingScreen from '../view/screen/browsing';
 const prefix = 'com.toripota.compacreader';
 
 export const screenNames = {
+    splash: `${prefix}.SplashScreen`,
     home: `${prefix}.HomeScreen`,
     story: `${prefix}.StoryScreen`,
     reader: `${prefix}.ReaderScreen`,
@@ -14,6 +16,7 @@ export const screenNames = {
 };
 
 export function registerScreens(store, Provider) {
+    Navigation.registerComponent(screenNames.splash, () => SplashSceren, store, Provider);
     Navigation.registerComponent(screenNames.home, () => HomeScreen, store, Provider);
     Navigation.registerComponent(screenNames.story, () => StoryScreen, store, Provider);
     Navigation.registerComponent(screenNames.reader, () => ReaderScreen, store, Provider);
