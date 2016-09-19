@@ -48,14 +48,18 @@ export function fetch(publisherType, publisherCode) {
 
         StoryAPI.fetchOrRefresh(publisherType, publisherCode)
             .then((story) => {
+                if (!story.bookmark) {
+                    story.bookmark = {};
+                }
                 dispatch({
                     type: ADD,
                     payload: story
                 });
                 dispatch(loading.finish());
             })
-            .catch(() => {
+            .catch((e) => {
                 dispatch(loading.finish());
+                console.error(e);
             });
     };
 }

@@ -1,3 +1,5 @@
+import * as ServiceClient from '../../../lib/service-client';
+
 export function loadAll() {
     return new Promise((resolve, _reject) => {
         setTimeout(() => {
@@ -11,20 +13,11 @@ export function refreshAll() {
 }
 
 export function fetchOrRefresh(publisherType, publisherCode) {
-    console.log(arguments);
     return new Promise((resolve, _reject) => {
-        resolve({
-            publisherType,
-            publisherCode,
-            title: `${publisherType}-${publisherCode}`,
-            authorName: '著者名',
-            description: '領都のあるギルドに、辺境の村から1通の依頼が届きました。\n仕事の内容は魔物退治。村の近くに住む洞窟に住む魔物を退治してほしいとのこと。\n\nですが、長年の経験を持つギルドのボスの勘が何かを訴えます。\nこの仕事……ただでは済まない、何か裏があるようです。 \nそこでボスは、ギルドの中でも腕の立つ2人の若者を村に派遣することにしました。',
-            lastUpdatedAt: Date.now(),
-            bookmark: {
-                episodeId: 'abc'
-            },
-            episodes: []
-        });
+        ServiceClient.fetchStory(publisherType, publisherCode)
+            .then((story) => {
+                resolve(story);
+            });
     });
 }
 
