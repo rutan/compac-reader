@@ -66,21 +66,22 @@ class StoryScreen extends React.Component {
                 <StoryEpisodes
                     story={story}
                     episodes={story.episodes || []}
-                    onPress={this.onSelectEpisode.bind(this)}
+                    onPress={this._onSelectEpisode.bind(this)}
                 />
             </ScrollView>
         );
     }
 
-    onSelectEpisode(episode) {
+    _onSelectEpisode(episode) {
         const story = this._getStory();
         if (!story) return;
 
         this.props.navigator.push({
             screen: screenNames.reader,
             passProps: {
-                story,
-                episode
+                publisherType: story.publisherType,
+                publisherCode: story.publisherCode,
+                episodeId: episode.episodeId
             }
         });
     }

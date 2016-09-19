@@ -7,6 +7,8 @@ import { connect } from 'react-redux';
 
 import color from '../../../config/color';
 
+import * as ReadingEpisodeAction from '../../../action/reading-episode';
+
 import ReaderNavigation from './navigation';
 import ReaderBrowser from './browser';
 import ReaderPager from './pager';
@@ -29,6 +31,32 @@ class ReaderScreen extends React.Component {
             page: 0,
             pageMax: 1
         };
+    }
+
+    componentDidMount() {
+        const {
+            dispatch,
+            publisherType,
+            publisherCode,
+            episodeId
+            } = this.props;
+
+        dispatch(ReadingEpisodeAction.fetch(publisherType, publisherCode, episodeId));
+    }
+
+    componentDidUpdate(prevProps) {
+        const {
+            dispatch,
+            publisherType,
+            publisherCode,
+            episodeId
+            } = this.props;
+
+        if (publisherType !== prevProps.publisherType ||
+            publisherCode !== prevProps.publisherCode ||
+            episodeId !== prevProps.episodeId) {
+            dispatch(ReadingEpisodeAction.fetch(publisherType, publisherCode, episodeId));
+        }
     }
 
     render() {
@@ -60,12 +88,12 @@ class ReaderScreen extends React.Component {
     }
 
     _renderNavigation() {
-        const { episode } = this.props;
+        const { readingEpisode } = this.props;
         if (!this.state.isShowMenu) return null;
 
         return (
             <ReaderNavigation
-                title={episode.title}
+                title={readingEpisode.title}
                 onPress={this._onBack.bind(this)}
                 style={styles.navigation}
             />

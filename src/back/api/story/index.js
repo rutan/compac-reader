@@ -24,7 +24,7 @@ export function fetchOrRefresh(publisherType, publisherCode) {
 function generateDummyData() {
     return [
         {
-            publisherType: 'narou',
+            publisherType: 'debug',
             publisherCode: 'n1',
             title: 'タイトル',
             authorName: '著者名',
@@ -83,7 +83,7 @@ function generateDummyData() {
             ]
         },
         {
-            publisherType: 'narou',
+            publisherType: 'debug',
             publisherCode: 'n2',
             title: 'タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトル',
             authorName: '著者名著者名著者名著者名著者名著者名著者名著者名著者名著者名著者名著者名著者名著者名著者名著者名著者名',
@@ -106,7 +106,7 @@ function generateDummyData() {
             ]
         },
         {
-            publisherType: 'narou',
+            publisherType: 'debug',
             publisherCode: 'n3',
             title: 'タイトル',
             authorName: '著者名',
@@ -114,7 +114,7 @@ function generateDummyData() {
             lastUpdatedAt: Date.now()
         },
         {
-            publisherType: 'narou',
+            publisherType: 'debug',
             publisherCode: 'n4',
             title: 'タイトル',
             authorName: '著者名',
@@ -122,7 +122,7 @@ function generateDummyData() {
             lastUpdatedAt: Date.now()
         },
         {
-            publisherType: 'narou',
+            publisherType: 'debug',
             publisherCode: 'n5',
             title: 'タイトル',
             authorName: '著者名',
@@ -130,7 +130,7 @@ function generateDummyData() {
             lastUpdatedAt: Date.now()
         },
         {
-            publisherType: 'narou',
+            publisherType: 'debug',
             publisherCode: 'n6',
             title: 'タイトル',
             authorName: '著者名',
@@ -138,7 +138,7 @@ function generateDummyData() {
             lastUpdatedAt: Date.now()
         },
         {
-            publisherType: 'narou',
+            publisherType: 'debug',
             publisherCode: 'n7',
             title: 'タイトル',
             authorName: '著者名',
@@ -146,7 +146,7 @@ function generateDummyData() {
             lastUpdatedAt: Date.now()
         },
         {
-            publisherType: 'narou',
+            publisherType: 'debug',
             publisherCode: 'n8',
             title: 'タイトル',
             authorName: '著者名',
@@ -154,7 +154,7 @@ function generateDummyData() {
             lastUpdatedAt: Date.now()
         },
         {
-            publisherType: 'narou',
+            publisherType: 'debug',
             publisherCode: 'n9',
             title: 'タイトル',
             authorName: '著者名',
@@ -162,7 +162,7 @@ function generateDummyData() {
             lastUpdatedAt: Date.now()
         },
         {
-            publisherType: 'narou',
+            publisherType: 'debug',
             publisherCode: 'n10',
             title: 'タイトル',
             authorName: '著者名',
