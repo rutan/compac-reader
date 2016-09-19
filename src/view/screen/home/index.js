@@ -2,7 +2,8 @@ import React from 'react';
 import {
     StyleSheet,
     View,
-    ScrollView
+    ScrollView,
+    RefreshControl
 } from 'react-native';
 import { connect } from 'react-redux';
 import Ionicon from 'react-native-vector-icons/Ionicons';
@@ -53,7 +54,8 @@ class HomeScreen extends React.Component {
 
     render() {
         const {
-            stories
+            stories,
+            isLoading
             } = this.props;
 
         return (
@@ -61,7 +63,15 @@ class HomeScreen extends React.Component {
                 <SectionHeader
                     title={`登録済みの小説 (${stories.length} 件)`}
                 />
-                <ScrollView>
+                <ScrollView
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={isLoading}
+                            onRefresh={this._onRefresh.bind(this)}
+                            colors={[color.theme]}
+                        />
+                    }
+                >
                     <StoryList
                         stories={stories}
                         onPress={this._onSelectStory.bind(this)}
@@ -96,13 +106,16 @@ class HomeScreen extends React.Component {
         });
     }
 
-    _onNavigatorEvent(e) {
+    _onRefresh() {
         const { dispatch } = this.props;
+        dispatch(StoryAction.refreshAll());
+    }
 
+    _onNavigatorEvent(e) {
         if (e.type !== 'NavBarButtonPress') return;
         switch (e.id) {
             case 'refresh':
-                dispatch(StoryAction.refreshAll());
+                this._onRefresh();
                 break;
             case 'settings':
                 break;
@@ -131,7 +144,8 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
     return {
-        stories: state.stories
+        stories: state.stories,
+        isLoading: state.loading > 0
     };
 }
 

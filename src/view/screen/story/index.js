@@ -1,7 +1,9 @@
 import React from 'react';
 import {
     StyleSheet,
-    ScrollView
+    View,
+    ScrollView,
+    RefreshControl
 } from 'react-native';
 import { connect } from 'react-redux';
 
@@ -52,15 +54,28 @@ class StoryScreen extends React.Component {
     }
 
     render() {
+        const {isLoading} = this.props;
         const story = this._getStory();
 
-        if (!story) {
-            // Loading表示
-            return <ScrollView></ScrollView>;
-        }
-
         return (
-            <ScrollView style={styles.container}>
+            <ScrollView
+                style={styles.container}
+                refreshControl={
+                    <RefreshControl
+                        refreshing={isLoading}
+                        onRefresh={this._onRefresh.bind(this)}
+                        colors={[color.theme]}
+                    />
+                }
+            >
+                { story ? this._renderContent(story) : null }
+            </ScrollView>
+        );
+    }
+
+    _renderContent(story) {
+        return (
+            <View>
                 <StoryHeader story={story}/>
                 <StoryAbstract story={story}/>
                 <StoryEpisodes
@@ -68,8 +83,11 @@ class StoryScreen extends React.Component {
                     episodes={story.episodes || []}
                     onPress={this._onSelectEpisode.bind(this)}
                 />
-            </ScrollView>
+            </View>
         );
+    }
+
+    _onRefresh() {
     }
 
     _onSelectEpisode(episode) {
@@ -112,7 +130,8 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
     return {
-        stories: state.stories
+        stories: state.stories,
+        isLoading: state.loading > 0
     };
 }
 
