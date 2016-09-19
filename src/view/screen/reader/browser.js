@@ -54,6 +54,7 @@ export default class ReaderBrowser extends React.Component {
 
     _startRenderHTML() {
         const { body, pageRate } = this.props;
+        console.log(`pageRate: ${pageRate}`);
         this.sendMessage('load', {
             body,
             pageRate

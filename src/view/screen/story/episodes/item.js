@@ -11,10 +11,29 @@ import * as TimeFormatter from '../../../../lib/time-formatter';
 
 export default class EpisodeItem extends React.Component {
     static propTypes = {
-        story: React.PropTypes.object.isRequired,
         episode: React.PropTypes.object.isRequired,
+        bookmark: React.PropTypes.object.isRequired,
         onPress: React.PropTypes.func.isRequired
     };
+
+    shouldComponentUpdate(nextProps) {
+        const {episode, bookmark} = this.props;
+        const {episode: nextEpisode, bookmark: nextBookmark} = nextProps;
+
+        const changeEpisodeFlag =
+            episode.title !== nextEpisode.title ||
+            episode.index !== nextEpisode.index ||
+            episode.revisedAt !== nextEpisode.revisedAt ||
+            episode.isDownload !== nextEpisode.isDownload ||
+            episode.isRead !== nextEpisode.isRead;
+
+        const changeBookmarkFlag =
+            bookmark.episodeId !== nextBookmark.episodeId &&
+            (nextEpisode.episodeId === bookmark.episodeId ||
+            nextEpisode.episodeId === nextBookmark.episodeId);
+
+        return changeEpisodeFlag || changeBookmarkFlag;
+    }
 
     render() {
         const {
@@ -55,13 +74,11 @@ export default class EpisodeItem extends React.Component {
 
     renderBookmark() {
         const {
-            story,
+            bookmark,
             episode
             } = this.props;
 
-        // FIXME
-        if (!story.bookmark || story.bookmark.episodeId !== episode.episodeId) return null;
-
+        if (bookmark.episodeId !== episode.episodeId) return null;
         return (
             <View style={styles.bookmark}/>
         );

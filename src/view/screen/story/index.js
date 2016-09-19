@@ -81,8 +81,8 @@ class StoryScreen extends React.Component {
                 <StoryHeader story={story}/>
                 <StoryAbstract story={story}/>
                 <StoryEpisodes
-                    story={story}
                     episodes={story.episodes || []}
+                    bookmark={story.bookmark}
                     onPress={this._onSelectEpisode.bind(this)}
                 />
             </View>
@@ -98,12 +98,15 @@ class StoryScreen extends React.Component {
         const story = this._getStory();
         if (!story) return;
 
+        const pageRate = (story.bookmark && story.bookmark.episodeId === episode.episodeId) ? story.bookmark.pageRate : 0;
+
         this.props.navigator.push({
             screen: screenNames.reader,
             passProps: {
                 publisherType: story.publisherType,
                 publisherCode: story.publisherCode,
-                episodeId: episode.episodeId
+                episodeId: episode.episodeId,
+                initialPageRate: pageRate
             }
         });
     }

@@ -9,8 +9,8 @@ import EpisodeList from './list';
 
 export default class StoryEpisodes extends React.Component {
     static propTypes = {
-        story: React.PropTypes.object.isRequired,
         episodes: React.PropTypes.array.isRequired,
+        bookmark: React.PropTypes.object.isRequired,
         onPress: React.PropTypes.func.isRequired
     };
 
@@ -42,15 +42,15 @@ export default class StoryEpisodes extends React.Component {
 
     _renderList() {
         const {
-            story,
             episodes,
+            bookmark,
             onPress
             } = this.props;
 
         return (
             <EpisodeList
-                story={story}
                 episodes={episodes}
+                bookmark={bookmark}
                 onPress={onPress}
                 level={0}
             />

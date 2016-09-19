@@ -59,3 +59,13 @@ export function fetch(publisherType, publisherCode) {
             });
     };
 }
+
+export function updateBookmark(publisherType, publisherCode, episodeId, pageRate) {
+    return (dispatch) => {
+        StoryAPI.updateBookmark(
+            publisherType, publisherCode, episodeId, pageRate)
+            .then(() => {
+                dispatch(loadAll());
+            });
+    };
+}

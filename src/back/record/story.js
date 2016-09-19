@@ -8,7 +8,8 @@ export default class Story {
             authorName: 'string',
             description: 'string',
             lastUpdatedAt: {type: 'int', indexed: true, default: 0},
-            episodes: {type: 'list', objectType: 'Episode'}
+            episodes: {type: 'list', objectType: 'Episode'},
+            bookmark: 'Bookmark'
         }
     };
 
@@ -36,7 +37,8 @@ export default class Story {
             lastUpdatedAt: this.lastUpdatedAt,
             episodes: this.episodes
                 .sorted('index', false)
-                .map(episode => episode.toObject())
+                .map(episode => episode.toObject()),
+            bookmark: (this.bookmark ? this.bookmark.toObject() : {})
         };
     }
 }

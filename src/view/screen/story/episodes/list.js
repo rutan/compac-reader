@@ -13,8 +13,8 @@ import EpisodeItem from './item';
 
 export default class EpisodeList extends React.Component {
     static propTypes = {
-        story: React.PropTypes.object.isRequired,
         episodes: React.PropTypes.array.isRequired,
+        bookmark: React.PropTypes.object.isRequired,
         onPress: React.PropTypes.func.isRequired,
         level: React.PropTypes.number
     };
@@ -25,9 +25,17 @@ export default class EpisodeList extends React.Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
-            dataSource: this.generateDataSource()
+            ds: new ListView.DataSource({
+                rowHasChanged: ((r1, r2) => r1 !== r2)
+            })
         };
+        this.state.dataSource = this.generateDataSource(props.episodes);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({dataSource: this.generateDataSource(nextProps.episodes)});
     }
 
     render() {
@@ -53,12 +61,11 @@ export default class EpisodeList extends React.Component {
     }
 
     renderRow(episode) {
-        const { story, level, onPress } = this.props;
+        const { bookmark, level, onPress } = this.props;
         switch (episode.type) {
             case 'header':
                 return (
                     <EpisodeChapter
-                        story={story}
                         episode={episode}
                         level={level + 1}
                         onPress={onPress}
@@ -67,8 +74,8 @@ export default class EpisodeList extends React.Component {
             case 'episode':
                 return (
                     <EpisodeItem
-                        story={story}
                         episode={episode}
+                        bookmark={bookmark}
                         level={level}
                         onPress={onPress}
                     />
@@ -78,12 +85,10 @@ export default class EpisodeList extends React.Component {
         }
     }
 
-    generateDataSource() {
-        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        return ds.cloneWithRows(this.props.episodes);
+    generateDataSource(episodes) {
+        return this.state.ds.cloneWithRows(episodes);
     }
 }
-
 
 const styles = StyleSheet.create({
     missingContainer: {

@@ -10,7 +10,6 @@ import SectionHeader from '../../../component/section-header';
 
 export default class EpisodeChapter extends React.Component {
     static propTypes = {
-        story: React.PropTypes.object.isRequired,
         episode: React.PropTypes.object.isRequired,
         onPress: React.PropTypes.func.isRequired,
         level: React.PropTypes.number

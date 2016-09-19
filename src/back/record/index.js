@@ -2,14 +2,16 @@ import Realm from 'realm';
 import Story from './story';
 import Episode from './episode';
 import EpisodeContent from './episode-content';
+import Bookmark from './bookmark';
 
 const realm = new Realm({
     schema: [
         Story,
         Episode,
-        EpisodeContent
+        EpisodeContent,
+        Bookmark
     ],
-    schemaVersion: 6,
+    schemaVersion: 7,
     migration: (_oldRealm, newRealm) => {
         newRealm.deleteAll();
     }
@@ -19,5 +21,6 @@ export {
     realm,
     Story,
     Episode,
-    EpisodeContent
+    EpisodeContent,
+    Bookmark
 };

@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 
 import color from '../../../config/color';
 
+import * as StoryAction from '../../../action/story';
 import * as ReadingEpisodeAction from '../../../action/reading-episode';
 
 import ReaderNavigation from './navigation';
@@ -29,7 +30,8 @@ class ReaderScreen extends React.Component {
         this.state = {
             isShowMenu: false,
             page: 0,
-            pageMax: 1
+            pageMax: 1,
+            pageRate: props.initialPageRate || 0
         };
     }
 
@@ -59,13 +61,18 @@ class ReaderScreen extends React.Component {
         }
     }
 
+    componentWillMount() {
+        this._updateBookmark();
+    }
+
     render() {
         const {
             readingEpisode
             } = this.props;
         const {
             page,
-            pageMax
+            pageMax,
+            pageRate
             } = this.state;
 
         return (
@@ -74,7 +81,7 @@ class ReaderScreen extends React.Component {
                     page={page}
                     pageMax={pageMax}
                     body={readingEpisode.body}
-                    pageRate={0}
+                    pageRate={pageRate}
                     onTap={this._onTap.bind(this)}
                     onChangePage={this._onChangePage.bind(this)}
                     onUpdatePageMax={this._onUpdatePageMax.bind(this)}
@@ -85,6 +92,16 @@ class ReaderScreen extends React.Component {
                 {this._renderPager()}
             </View>
         );
+    }
+
+    _updateBookmark(wait = 1000) {
+        if (this._bookmarkUpdator) clearTimeout(this._bookmarkUpdator);
+        this._bookmarkUpdator = setTimeout(() => {
+            console.log('update bookmark');
+            const {dispatch, publisherType, publisherCode, episodeId} = this.props;
+            const pageRate = this.state.page / this.state.pageMax;
+            dispatch(StoryAction.updateBookmark(publisherType, publisherCode, episodeId, pageRate));
+        }, wait);
     }
 
     _renderNavigation() {
@@ -123,6 +140,7 @@ class ReaderScreen extends React.Component {
 
     _onChangePage(page) {
         this.setState({page});
+        this._updateBookmark();
     }
 
     _onUpdatePageMax(pageMax) {
@@ -157,6 +175,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
     return {
+        stories: state.stories,
         readingEpisode: state.readingEpisode
     };
 }
