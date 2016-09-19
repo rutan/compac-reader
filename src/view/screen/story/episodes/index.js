@@ -14,33 +14,13 @@ export default class StoryEpisodes extends React.Component {
         onPress: React.PropTypes.func.isRequired
     };
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            isShowList: false
-        };
-    }
-
-    componentDidMount() {
-        // 重いので一瞬遅れて描画させてみる
-        setTimeout(() => {
-            this.setState({isShowList: true});
-        }, 0);
+    shouldComponentUpdate(nextProps) {
+        return this.props.episodes !== nextProps.episodes ||
+            this.props.bookmark !== nextProps.bookmark ||
+            this.props.onPress !== nextProps.onPress;
     }
 
     render() {
-        return (
-            <View style={styles.container}>
-                <SectionHeader
-                    title="エピソード一覧"
-                    style={styles.header}
-                />
-                {this.state.isShowList ? this._renderList() : null}
-            </View>
-        );
-    }
-
-    _renderList() {
         const {
             episodes,
             bookmark,
@@ -48,12 +28,18 @@ export default class StoryEpisodes extends React.Component {
             } = this.props;
 
         return (
-            <EpisodeList
-                episodes={episodes}
-                bookmark={bookmark}
-                onPress={onPress}
-                level={0}
-            />
+            <View style={styles.container}>
+                <SectionHeader
+                    title="エピソード一覧"
+                    style={styles.header}
+                />
+                <EpisodeList
+                    episodes={episodes}
+                    bookmark={bookmark}
+                    onPress={onPress}
+                    level={0}
+                />
+            </View>
         );
     }
 }

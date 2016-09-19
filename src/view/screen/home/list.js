@@ -14,8 +14,9 @@ export default class StoryList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            dataSource: this.generateDataSource(props.stories)
+            ds: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
         };
+        this.state.dataSource = this.generateDataSource(props.stories);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -33,6 +34,8 @@ export default class StoryList extends React.Component {
             <ListView
                 dataSource={this.state.dataSource}
                 renderRow={this.renderRow.bind(this)}
+                initialListSize={20}
+                initialListSize={10}
             >
             </ListView>
         );
@@ -48,7 +51,6 @@ export default class StoryList extends React.Component {
     }
 
     generateDataSource(stories) {
-        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        return ds.cloneWithRows(stories);
+        return this.state.ds.cloneWithRows(stories);
     }
 }

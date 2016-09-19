@@ -29,9 +29,18 @@ export default class ReaderBrowser extends React.Component {
     }
 
     shouldComponentUpdate(nextProps) {
+        if (this.caches.body !== nextProps.body) {
+            this.caches.body = nextProps.body;
+            this.sendMessage('load', {
+                body: nextProps.body,
+                pageRate: nextProps.pageRate
+            });
+        }
+
         if (this.caches.page !== nextProps.page) {
             this.sendMessage('page', nextProps.page);
         }
+
         return false;
     }
 

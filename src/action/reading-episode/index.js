@@ -3,6 +3,7 @@ import * as loading from '../loading';
 import * as EpisodeAPI from '../../back/api/episode';
 
 export const LOAD = Symbol('LOAD');
+export const CLEAR = Symbol('CLEAR');
 
 export function fetch(publisherType, publisherCode, episodeId) {
     return (dispatch) => {
@@ -20,5 +21,11 @@ export function fetch(publisherType, publisherCode, episodeId) {
                 dispatch(loading.finish());
                 console.error(e);
             });
+    };
+}
+
+export function clear() {
+    return {
+        type: CLEAR
     };
 }

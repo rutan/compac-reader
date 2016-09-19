@@ -7,18 +7,12 @@ export const REFRESH_ALL = Symbol('REFRESH_ALL');
 
 export function loadAll() {
     return (dispatch) => {
-        dispatch(loading.start());
-
         StoryAPI.loadAll()
             .then((stories) => {
                 dispatch({
                     type: LOAD_ALL,
                     payload: stories
                 });
-                dispatch(loading.finish());
-            })
-            .catch(() => {
-                dispatch(loading.finish());
             });
     };
 }

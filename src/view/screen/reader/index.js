@@ -43,7 +43,9 @@ class ReaderScreen extends React.Component {
             episodeId
             } = this.props;
 
-        dispatch(ReadingEpisodeAction.fetch(publisherType, publisherCode, episodeId));
+        setTimeout(() => {
+            dispatch(ReadingEpisodeAction.fetch(publisherType, publisherCode, episodeId));
+        }, 0);
     }
 
     componentDidUpdate(prevProps) {
@@ -62,7 +64,8 @@ class ReaderScreen extends React.Component {
     }
 
     componentWillMount() {
-        this._updateBookmark();
+        this.props.dispatch(ReadingEpisodeAction.clear());
+        this._updateBookmark(0);
     }
 
     render() {
@@ -72,7 +75,8 @@ class ReaderScreen extends React.Component {
         const {
             page,
             pageMax,
-            pageRate
+            pageRate,
+            isShowMenu
             } = this.state;
 
         return (
@@ -88,46 +92,28 @@ class ReaderScreen extends React.Component {
                     onPullPrev={this._onPullPrev.bind(this)}
                     onPullNext={this._onPullNext.bind(this)}
                 />
-                {this._renderNavigation()}
-                {this._renderPager()}
+                <ReaderNavigation
+                    title={readingEpisode.title}
+                    onPress={this._onBack.bind(this)}
+                    style={isShowMenu ? styles.navigation : styles.hidden}
+                />
+                <ReaderPager
+                    style={isShowMenu ? styles.pager : styles.hidden}
+                    page={this.state.page}
+                    pageMax={this.state.pageMax || 1}
+                    onValueChange={this._onChangePage.bind(this)}
+                />
             </View>
         );
     }
 
-    _updateBookmark(wait = 1000) {
+    _updateBookmark(wait = 5000) {
         if (this._bookmarkUpdator) clearTimeout(this._bookmarkUpdator);
         this._bookmarkUpdator = setTimeout(() => {
-            console.log('update bookmark');
             const {dispatch, publisherType, publisherCode, episodeId} = this.props;
             const pageRate = this.state.page / this.state.pageMax;
             dispatch(StoryAction.updateBookmark(publisherType, publisherCode, episodeId, pageRate));
         }, wait);
-    }
-
-    _renderNavigation() {
-        const { readingEpisode } = this.props;
-        if (!this.state.isShowMenu) return null;
-
-        return (
-            <ReaderNavigation
-                title={readingEpisode.title}
-                onPress={this._onBack.bind(this)}
-                style={styles.navigation}
-            />
-        );
-    }
-
-    _renderPager() {
-        if (!this.state.isShowMenu) return null;
-
-        return (
-            <ReaderPager
-                style={styles.pager}
-                page={this.state.page}
-                pageMax={this.state.pageMax || 1}
-                onValueChange={this._onChangePage.bind(this)}
-            />
-        );
     }
 
     _onBack() {
@@ -169,6 +155,12 @@ const styles = StyleSheet.create({
         position: 'absolute',
         left: 0,
         bottom: 0,
+        right: 0
+    },
+    hidden: {
+        position: 'absolute',
+        left: 0,
+        bottom: -100,
         right: 0
     }
 });

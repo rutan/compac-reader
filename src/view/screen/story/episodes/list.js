@@ -55,6 +55,8 @@ export default class EpisodeList extends React.Component {
             <ListView
                 dataSource={this.state.dataSource}
                 renderRow={this.renderRow.bind(this)}
+                initialListSize={5}
+                pageSize={10}
             >
             </ListView>
         );
