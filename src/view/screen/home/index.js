@@ -69,6 +69,7 @@ class HomeScreen extends React.Component {
                 </ScrollView>
                 <FloatingButton
                     style={styles.floatingButton}
+                    onPress={this._onPressAddButton.bind(this)}
                 >
                     <Ionicon name="md-add" size={30} color="#ffffff"/>
                 </FloatingButton>
@@ -76,11 +77,21 @@ class HomeScreen extends React.Component {
         );
     }
 
+    _onPressAddButton() {
+        this.props.navigator.push({
+            screen: screenNames.browsing,
+            passProps: {
+                type: 'narou'
+            }
+        });
+    }
+
     _onSelectStory(story) {
         this.props.navigator.push({
             screen: screenNames.story,
             passProps: {
-                story
+                publisherType: story.publisherType,
+                publisherCode: story.publisherCode
             }
         });
     }

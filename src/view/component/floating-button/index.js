@@ -18,6 +18,7 @@ export default class FloatingButton extends React.Component {
     static defaultProps = {
         size: 'large',
         color: color.theme,
+        disabledColor: '#cccccc',
         elevation: 20,
         disabled: false,
         onPress: () => {
@@ -31,6 +32,7 @@ export default class FloatingButton extends React.Component {
         const {
             size,
             color,
+            disabledColor,
             elevation,
             disabled,
             onPress,
@@ -50,7 +52,7 @@ export default class FloatingButton extends React.Component {
             justifyContent: 'center',
             alignItems: 'center',
             borderRadius: ((size === 'large') ? 56 : 48) / 2,
-            backgroundColor: color
+            backgroundColor: disabled ? disabledColor : color
         };
 
         return (

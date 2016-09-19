@@ -4,6 +4,7 @@ import * as StoryAPI from '../../back/api/story';
 
 export const LOAD_ALL = Symbol('LOAD_ALL');
 export const REFRESH_ALL = Symbol('REFRESH_ALL');
+export const ADD = Symbol('ADD');
 
 export function loadAll() {
     return (dispatch) => {
@@ -32,6 +33,24 @@ export function refreshAll() {
                 dispatch({
                     type: REFRESH_ALL,
                     payload: stories
+                });
+                dispatch(loading.finish());
+            })
+            .catch(() => {
+                dispatch(loading.finish());
+            });
+    };
+}
+
+export function fetch(publisherType, publisherCode) {
+    return (dispatch) => {
+        dispatch(loading.start());
+
+        StoryAPI.fetchOrRefresh(publisherType, publisherCode)
+            .then((story) => {
+                dispatch({
+                    type: ADD,
+                    payload: story
                 });
                 dispatch(loading.finish());
             })
