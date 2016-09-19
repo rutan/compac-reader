@@ -5,6 +5,7 @@ import {
     View,
     TouchableNativeFeedback
 } from 'react-native';
+import Ionicon from 'react-native-vector-icons/Ionicons';
 
 import color from '../../../../config/color';
 import * as TimeFormatter from '../../../../lib/time-formatter';
@@ -36,18 +37,16 @@ export default class EpisodeItem extends React.Component {
     }
 
     render() {
-        const {
-            episode
-            } = this.props;
+        const {episode} = this.props;
 
         return (
             <TouchableNativeFeedback
-                onPress={this.onPress.bind(this)}
+                onPress={this._onPress.bind(this)}
             >
                 <View style={styles.container}>
-                    {this.renderBookmark()}
+                    {this._renderBookmark()}
                     <Text
-                        style={styles.title}
+                        style={(episode.isRead || episode.isDownload) ? styles.title : styles.titleGray}
                         numberOfLines={1}
                     >
                         {episode.title}
@@ -67,12 +66,15 @@ export default class EpisodeItem extends React.Component {
                             })()
                         }
                     </View>
+                    <View style={styles.mark}>
+                        {this._renderMark()}
+                    </View>
                 </View>
             </TouchableNativeFeedback>
         );
     }
 
-    renderBookmark() {
+    _renderBookmark() {
         const {
             bookmark,
             episode
@@ -84,7 +86,19 @@ export default class EpisodeItem extends React.Component {
         );
     }
 
-    onPress() {
+    _renderMark() {
+        const {episode} = this.props;
+
+        if (episode.isRead) {
+            return <Ionicon name='md-checkmark' size={14} color={color.theme} />;
+        } else if (episode.isDownload) {
+            return <Ionicon name='md-book' size={14} color={color.textLight} />;
+        } else {
+            return null;
+        }
+    }
+
+    _onPress() {
         const {
             episode,
             onPress
@@ -118,6 +132,14 @@ const styles = StyleSheet.create({
         marginLeft: 20,
         marginRight: 20
     },
+    titleGray: {
+        color: color.textLight,
+        fontSize: 17,
+        lineHeight: 25,
+        marginTop: 10,
+        marginLeft: 20,
+        marginRight: 20
+    },
     info: {
         flexDirection: 'row',
         marginTop: 5,
@@ -132,5 +154,10 @@ const styles = StyleSheet.create({
         marginLeft: 15,
         color: color.textLight,
         fontSize: 13
+    },
+    mark: {
+        position: 'absolute',
+        bottom: 10,
+        right: 10
     }
 });

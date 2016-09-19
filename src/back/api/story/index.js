@@ -37,10 +37,13 @@ export function updateBookmark(publisherType, publisherCode, episodeId, pageRate
     const id = `${publisherType}__${publisherCode}`;
     return new Promise((resolve) => {
         const story = Record.realm.objects('Story').filtered('id == $0', id)[0];
+        const episode = story.episodes.filtered('id == $0', `${id}__${episodeId}`)[0];
+
         Record.realm.write(() => {
             if (story.bookmark) {
                 story.bookmark.episodeId = episodeId;
                 story.bookmark.pageRate = pageRate;
+                if (!episode.isRead) episode.isRead = true;
             } else {
                 story.bookmark = Record.realm.create('Bookmark', {
                     episodeId, pageRate
