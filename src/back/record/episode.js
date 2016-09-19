@@ -9,7 +9,9 @@ export default class Episode {
             title: 'string',
             index: {type: 'int', indexed: true, default: 0},
             publishedAt: {type: 'int', optional: true},
-            revisedAt: {type: 'int', indexed: true, optional: true}
+            revisedAt: {type: 'int', indexed: true, optional: true},
+            isDownloaded: {type: 'bool', default: false},
+            isRead: {type: 'bool', default: false}
         }
     };
 
@@ -41,7 +43,9 @@ export default class Episode {
             title: this.title,
             index: this.index,
             publishedAt: this.publishedAt,
-            revisedAt: this.revisedAt
+            revisedAt: this.revisedAt,
+            isDownload: this.isDownloaded,
+            isRead: this.isRead
         };
     }
 }

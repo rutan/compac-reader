@@ -8,7 +8,7 @@ export function fetch(publisherType, publisherCode, episodeId) {
     return (dispatch) => {
         dispatch(loading.start());
 
-        EpisodeAPI.fetchOrLoad(publisherType, publisherCode, episodeId)
+        EpisodeAPI.loadOrFetch(publisherType, publisherCode, episodeId)
             .then((episode) => {
                 dispatch({
                     type: LOAD,

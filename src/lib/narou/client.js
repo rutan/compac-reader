@@ -1,5 +1,6 @@
 import * as httpClient from '../http-client';
 
+const publisherType = 'narou';
 const NCODE_URL_BASE = 'http://ncode.syosetu.com';
 
 /**
@@ -11,7 +12,7 @@ export function fetchStory(publisherCode) {
     const url = `${NCODE_URL_BASE}/${publisherCode}/`;
 
     return httpClient.fetchHTML(url).then(($) => {
-        const storyId = `narou__${publisherCode}`;
+        const storyId = `${publisherType}__${publisherCode}`;
         const title = $('.novel_title').text();
         const authorName = $('.novel_writername a').text();
         const description = $('#novel_ex').text();
@@ -49,7 +50,7 @@ export function fetchStory(publisherCode) {
 
         return ({
             id: storyId,
-            publisherType: 'narou',
+            publisherType,
             publisherCode,
             title,
             authorName,
@@ -61,18 +62,22 @@ export function fetchStory(publisherCode) {
 
 /**
  * load from `http://ncode.syosetu.com/:id/:episodeId/`
- * @param code
+ * @param publisherCode
  * @param episodeId
  * @returns {*|Promise.<T>}
  */
-export function fetchEpisode(code, episodeId) {
-    const url = `${NCODE_URL_BASE}/${code}/${episodeId}/`;
+export function fetchEpisode(publisherCode, episodeId) {
+    const url = `${NCODE_URL_BASE}/${publisherCode}/${episodeId}/`;
 
     return httpClient.fetchHTML(url).then(($) => {
         const title = $('.novel_subtitle').text();
         const body = $('#novel_honbun').html();
 
         return ({
+            id: `${publisherType}__${publisherCode}__${episodeId}`,
+            publisherType,
+            publisherCode,
+            episodeId,
             title,
             body
         });

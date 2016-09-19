@@ -1,13 +1,15 @@
 import Realm from 'realm';
 import Story from './story';
 import Episode from './episode';
+import EpisodeContent from './episode-content';
 
 const realm = new Realm({
     schema: [
         Story,
-        Episode
+        Episode,
+        EpisodeContent
     ],
-    schemaVersion: 5,
+    schemaVersion: 6,
     migration: (_oldRealm, newRealm) => {
         newRealm.deleteAll();
     }
@@ -16,5 +18,6 @@ const realm = new Realm({
 export {
     realm,
     Story,
-    Episode
+    Episode,
+    EpisodeContent
 };
