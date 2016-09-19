@@ -60,7 +60,7 @@ export default class EpisodeItem extends React.Component {
             } = this.props;
 
         // FIXME
-        if (story.bookmark && story.bookmark.episodeId !== episode.episodeId) return null;
+        if (!story.bookmark || story.bookmark.episodeId !== episode.episodeId) return null;
 
         return (
             <View style={styles.bookmark}/>

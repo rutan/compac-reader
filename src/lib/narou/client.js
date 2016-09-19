@@ -16,37 +16,34 @@ export function fetchStory(publisherCode) {
         const authorName = $('.novel_writername a').text();
         const description = $('#novel_ex').text();
 
-        const episodes = [];
-        let chapter = episodes;
-        $('.chapter_title, .novel_sublist2').map((i, element) => {
+        const episodes = $('.chapter_title, .novel_sublist2').map((index, element) => {
             const el = $(element);
             const type = el.attr('class') === 'chapter_title' ? 'header' : 'episode';
             if (type === 'header') {
                 const title = el.text();
-                const newChapter = {
-                    id: `narou__${publisherCode}__header-${i}`,
+                return {
+                    id: `${storyId}__header-${index}`,
                     storyId,
                     type,
                     title,
-                    children: []
+                    index
                 };
-                episodes.push(newChapter);
-                chapter = newChapter.children;
             } else {
                 const episodeId = el.find('.subtitle a').attr('href').replace(`/${publisherCode}/`, '').replace('/', '');
                 const title = el.find('.subtitle').text();
                 const luContents = el.find('.long_update').contents();
                 const publishedAt = parseDateFromString(luContents[0].data);
                 const revisedAt = luContents.length > 1 ? parseDateFromString($(luContents[1]).attr('title')) : publishedAt;
-                chapter.push({
-                    id: `narou__${publisherCode}__${episodeId}`,
+                return {
+                    id: `${storyId}__${episodeId}`,
                     storyId,
                     type,
                     episodeId,
                     title,
                     publishedAt,
-                    revisedAt
-                });
+                    revisedAt,
+                    index
+                };
             }
         }).get();
 

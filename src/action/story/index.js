@@ -45,7 +45,7 @@ export function fetch(publisherType, publisherCode) {
     return (dispatch) => {
         dispatch(loading.start());
 
-        StoryAPI.fetchOrRefresh(publisherType, publisherCode)
+        StoryAPI.fetch(publisherType, publisherCode)
             .then((story) => {
                 if (!story.bookmark) {
                     story.bookmark = {};

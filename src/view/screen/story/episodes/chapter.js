@@ -7,7 +7,6 @@ import {
 import color from '../../../../config/color';
 
 import SectionHeader from '../../../component/section-header';
-import EpisodeList from './list';
 
 export default class EpisodeChapter extends React.Component {
     static propTypes = {
@@ -20,24 +19,6 @@ export default class EpisodeChapter extends React.Component {
     static defaultProps = {
         level: 0
     };
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            isShowList: false
-        };
-    }
-
-    componentDidMount() {
-        const {
-            level,
-            } = this.props;
-
-        // 重いので一瞬遅れて描画させてみる
-        setTimeout(() => {
-            this.setState({isShowList: true});
-        }, (level + 1) * Math.random());
-    }
 
     render() {
         const {
@@ -55,26 +36,7 @@ export default class EpisodeChapter extends React.Component {
                     size={isSlim ? 'slim' : 'medium'}
                     color={isSlim ? color.sub : color.theme}
                 />
-                {this.state.isShowList ? this._renderList() : null}
             </View>
-        );
-    }
-
-    _renderList() {
-        const {
-            story,
-            episode,
-            level,
-            onPress
-            } = this.props;
-
-        return (
-            <EpisodeList
-                story={story}
-                episodes={episode.children}
-                level={level}
-                onPress={onPress}
-            />
         );
     }
 }

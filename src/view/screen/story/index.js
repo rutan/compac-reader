@@ -41,10 +41,12 @@ class StoryScreen extends React.Component {
     };
 
     componentDidMount() {
+        const {navigator, dispatch, publisherType, publisherCode} = this.props;
+        navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
+
         if (this._getStory()) {
             this._updateTitle();
         } else {
-            const { dispatch, publisherType, publisherCode } = this.props;
             dispatch(StoryAction.fetch(publisherType, publisherCode));
         }
     }
@@ -88,6 +90,8 @@ class StoryScreen extends React.Component {
     }
 
     _onRefresh() {
+        const {dispatch, publisherType, publisherCode} = this.props;
+        dispatch(StoryAction.fetch(publisherType, publisherCode));
     }
 
     _onSelectEpisode(episode) {
@@ -118,6 +122,16 @@ class StoryScreen extends React.Component {
         this.props.navigator.setTitle({
             title: story.title
         });
+    }
+
+    _onNavigatorEvent(e) {
+        if (e.type !== 'NavBarButtonPress') return;
+        switch (e.id) {
+            case 'download':
+                break;
+            case 'remove':
+                break;
+        }
     }
 }
 

@@ -4,12 +4,12 @@ export default class Episode {
         primaryKey: 'id',
         properties: {
             id: 'string',
-            storyId: 'string',
+            storyId: {type: 'string', indexed: true},
             type: 'string',
             title: 'string',
-            publishedAt: {type: 'int', indexed: true, optional: true},
-            revisedAt: {type: 'int', indexed: true, optional: true},
-            children: {type: 'list', objectType: 'Episode'}
+            index: {type: 'int', indexed: true, default: 0},
+            publishedAt: {type: 'int', optional: true},
+            revisedAt: {type: 'int', indexed: true, optional: true}
         }
     };
 
@@ -33,14 +33,15 @@ export default class Episode {
     toObject() {
         return {
             id: this.id,
+            storyId: this.storyId,
             publisherType: this.publisherType,
             publisherCode: this.publisherCode,
             episodeId: this.episodeId,
             type: this.type,
             title: this.title,
+            index: this.index,
             publishedAt: this.publishedAt,
-            revisedAt: this.revisedAt,
-            children: this.children.map(episode => episode.toObject())
+            revisedAt: this.revisedAt
         };
     }
 }

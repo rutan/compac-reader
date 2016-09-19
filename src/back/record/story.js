@@ -7,7 +7,7 @@ export default class Story {
             title: 'string',
             authorName: 'string',
             description: 'string',
-            lastUpdatedAt: { type: 'int', indexed: true, default: 0 },
+            lastUpdatedAt: {type: 'int', indexed: true, default: 0},
             episodes: {type: 'list', objectType: 'Episode'}
         }
     };
@@ -34,7 +34,9 @@ export default class Story {
             authorName: this.authorName,
             description: this.description,
             lastUpdatedAt: this.lastUpdatedAt,
-            episodes: this.episodes.map(episode => episode.toObject())
+            episodes: this.episodes
+                .sorted('index', false)
+                .map(episode => episode.toObject())
         };
     }
 }

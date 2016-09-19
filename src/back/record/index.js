@@ -7,7 +7,7 @@ const realm = new Realm({
         Story,
         Episode
     ],
-    schemaVersion: 4,
+    schemaVersion: 5,
     migration: (_oldRealm, newRealm) => {
         newRealm.deleteAll();
     }
