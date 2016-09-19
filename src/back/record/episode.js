@@ -10,7 +10,7 @@ export default class Episode {
             index: {type: 'int', indexed: true, default: 0},
             publishedAt: {type: 'int', optional: true},
             revisedAt: {type: 'int', indexed: true, optional: true},
-            isDownloaded: {type: 'bool', default: false},
+            downloadedAt: {type: 'int', default: 0, optional: true},
             isRead: {type: 'bool', default: false}
         }
     };
@@ -25,6 +25,10 @@ export default class Episode {
 
     get episodeId() {
         return this.parseId()[2];
+    }
+
+    get isDownloaded() {
+        return this.downloadedAt > 0;
     }
 
     parseId() {
@@ -45,7 +49,8 @@ export default class Episode {
             publishedAt: this.publishedAt,
             revisedAt: this.revisedAt,
             isDownload: this.isDownloaded,
-            isRead: this.isRead
+            isRead: this.isRead,
+            downloadedAt: this.downloadedAt
         };
     }
 }

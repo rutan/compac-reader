@@ -11,6 +11,7 @@ import {screenNames} from '../../../config/router';
 import color from '../../../config/color';
 
 import * as StoryAction from '../../../action/story';
+import * as ReadingEpisodeAction from '../../../action/reading-episode';
 
 import StoryHeader from './header';
 import StoryAbstract from './abstract';
@@ -128,9 +129,12 @@ class StoryScreen extends React.Component {
     }
 
     _onNavigatorEvent(e) {
+        const {dispatch, publisherType, publisherCode} = this.props;
+
         if (e.type !== 'NavBarButtonPress') return;
         switch (e.id) {
             case 'download':
+                dispatch(ReadingEpisodeAction.downloadAll(publisherType, publisherCode));
                 break;
             case 'remove':
                 break;

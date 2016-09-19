@@ -15,7 +15,7 @@ export function fetch(publisherType, publisherCode, episodeId) {
                         'EpisodeContent',
                         Object.assign({id}, data)
                     );
-                    episode.isDownloaded = true;
+                    episode.downloadedAt = Date.now();
                     resolve(episodeContent.toObject());
                 });
             });
@@ -32,4 +32,31 @@ export function loadOrFetch(publisherType, publisherCode, episodeId) {
     } else {
         return fetch(publisherType, publisherCode, episodeId);
     }
+}
+
+export function downloadAll(publisherType, publisherCode) {
+    const downloader = (episode) => {
+        return () => {
+            return fetch(episode.publisherType, episode.publisherCode, episode.episodeId);
+        };
+    };
+
+    return new Promise((resolve) => {
+        const id = `${publisherType}__${publisherCode}`;
+        const story = Record.realm.objects('Story').filtered('id == $0', id)[0];
+
+        const promises = Array.from(story.episodes).filter((episode) => {
+            return episode.revisedAt > episode.downloadedAt;
+        }).map((episode) => downloader(episode));
+        promises.push(() => {
+            return new Promise((r) => {
+                r();
+                resolve();
+            });
+        });
+
+        promises.reduce((prev, curr) => {
+            return prev.then(curr);
+        }, Promise.resolve());
+    });
 }
