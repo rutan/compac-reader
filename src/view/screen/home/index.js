@@ -10,6 +10,8 @@ import Ionicon from 'react-native-vector-icons/Ionicons';
 import {screenNames} from '../../../config/router';
 import color from '../../../config/color';
 
+import * as StoryAction from '../../../action/story';
+
 import SectionHeader from '../../component/section-header';
 import FloatingButton from '../../component/floating-button';
 import StoryList from './list';
@@ -43,6 +45,12 @@ class HomeScreen extends React.Component {
         ]
     };
 
+    componentDidMount() {
+        const { dispatch, navigator } = this.props;
+        dispatch(StoryAction.loadAll());
+        navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
+    }
+
     render() {
         const {
             stories
@@ -56,7 +64,7 @@ class HomeScreen extends React.Component {
                 <ScrollView>
                     <StoryList
                         stories={stories}
-                        onPress={this.onSelectStory.bind(this)}
+                        onPress={this._onSelectStory.bind(this)}
                     />
                 </ScrollView>
                 <FloatingButton
@@ -68,13 +76,28 @@ class HomeScreen extends React.Component {
         );
     }
 
-    onSelectStory(story) {
+    _onSelectStory(story) {
         this.props.navigator.push({
             screen: screenNames.story,
             passProps: {
                 story
             }
         });
+    }
+
+    _onNavigatorEvent(e) {
+        const { dispatch } = this.props;
+
+        if (e.type !== 'NavBarButtonPress') return;
+        switch (e.id) {
+            case 'refresh':
+                dispatch(StoryAction.refreshAll());
+                break;
+            case 'settings':
+                break;
+            case 'version':
+                break;
+        }
     }
 }
 
