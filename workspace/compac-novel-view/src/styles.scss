@@ -28,12 +28,14 @@ html, body {
   }
 
   &__content {
+    float: right;
     height: 100%;
     padding: 1em;
     -webkit-writing-mode: vertical-rl;
     writing-mode: vertical-rl;
     -webkit-text-orientation: upright;
     text-orientation: upright;
+    line-break: strict;
     box-sizing: border-box;
 
     em {
@@ -41,6 +43,10 @@ html, body {
       -webkit-text-emphasis-style: sesame filled;
       -moz-text-emphasis-style: sesame filled;
       text-emphasis-style: sesame filled;
+    }
+
+    .combine {
+      text-combine-upright: all;
     }
   }
 }
