@@ -55,8 +55,8 @@ export default class Sheet extends React.Component {
         const pageWidth = page.getBoundingClientRect().width;
         element.style.width = `${pageWidth * (pageNum + 1)}px`;
 
-        let node;
-        while (nodes.length > 0) {
+        let node = null;
+        while (node || nodes.length > 0) {
             if (!node) node = nodes.shift();
             content.appendChild(node);
             if (content.getBoundingClientRect().width >= pageWidth) {
