@@ -112,7 +112,9 @@ export default class CompacNovelView extends React.Component {
             if (!dragging) return;
 
             const x = e.touches[0].screenX;
-            sheet.style.left = `${parseInt(sheet.style.left) + (x - lastX)}px`;
+            const match = sheet.style.transform.match(/\((\-?\d+(?:\.\d+)?)px\)/);
+            const oldLeft = match ? parseFloat(match[1]) : 0;
+            sheet.style.transform = `translateX(${oldLeft + (x - lastX)}px)`;
             lastX = x;
         });
 
@@ -161,7 +163,7 @@ export default class CompacNovelView extends React.Component {
         console.log('refreshPage');
         const sheet = ReactDOM.findDOMNode(this.refs.sheet);
         const pageWidth = sheet.querySelectorAll('div')[0].getBoundingClientRect().width;
-        sheet.style.left = `${-pageWidth * (this.state.pageMax - this.props.page - 1)}px`;
+        sheet.style.transform = `translateX(${-pageWidth * (this.state.pageMax - this.props.page - 1)}px)`;
     }
 
     _onKeydown(e) {

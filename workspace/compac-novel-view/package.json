@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "start": "webpack-dev-server --host 0.0.0.0",
-    "build": "webpack --optimize-minimize && cp ./_build/bundle.js ../../android/app/src/main/assets/reader"
+    "build": "webpack --optimize-minimize && mv ./_build/bundle.js ../../android/app/src/main/assets/reader"
   },
   "author": "ru_shalm <ru_shalm@hazimu.com>",
   "license": "MIT",
