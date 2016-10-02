@@ -82,6 +82,8 @@ export default class Sheet extends React.Component {
                         }
 
                         if (max - min <= 1) {
+                            const nextChar = str.substr(min, 1);
+                            if (nextChar.match(/[、。！？]/)) --min;
                             oldContent.innerHTML = backupHTML + str.substr(0, min);
                             node = document.createTextNode(str.substr(min, str.length - min));
                             break;
