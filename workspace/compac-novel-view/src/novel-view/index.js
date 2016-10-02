@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import listener from '../lib/listener';
 import Sheet from './sheet';
+import formatter from './formatter';
 
 export default class CompacNovelView extends React.Component {
     static propTypes = {
@@ -24,7 +25,6 @@ export default class CompacNovelView extends React.Component {
 
     render() {
         const {
-            emitter,
             body
             } = this.props;
 
@@ -35,7 +35,7 @@ export default class CompacNovelView extends React.Component {
                 ref="root">
                 <Sheet
                     ref="sheet"
-                    body={body}
+                    body={formatter(body)}
                     onRefresh={this._onRefresh.bind(this)}
                 />
             </div>
