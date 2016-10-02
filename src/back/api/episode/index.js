@@ -13,7 +13,8 @@ export function fetch(publisherType, publisherCode, episodeId) {
                 Record.realm.write(() => {
                     const episodeContent = Record.realm.create(
                         'EpisodeContent',
-                        Object.assign({id}, data)
+                        Object.assign({id}, data),
+                        true
                     );
                     episode.downloadedAt = Date.now();
                     resolve(episodeContent.toObject());

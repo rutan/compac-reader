@@ -38,6 +38,13 @@ html, body {
     line-break: strict;
     box-sizing: border-box;
 
+    hr {
+      border: 0;
+      border-left: 4px double #000;
+      height: 100%;
+      margin: 0 2em;
+    }
+
     em {
       font-style: normal;
       -webkit-text-emphasis-style: sesame filled;

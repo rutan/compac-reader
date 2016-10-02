@@ -71,7 +71,11 @@ export function fetchEpisode(publisherCode, episodeId) {
 
     return httpClient.fetchHTML(url).then(($) => {
         const title = $('.novel_subtitle').text();
-        const body = $('#novel_honbun').html();
+        const body = [
+            $('#novel_p').html(),
+            $('#novel_honbun').html(),
+            $('#novel_a').html()
+        ].join('<hr>');
 
         return ({
             id: `${publisherType}__${publisherCode}__${episodeId}`,
