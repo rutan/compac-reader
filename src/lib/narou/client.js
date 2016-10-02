@@ -75,7 +75,7 @@ export function fetchEpisode(publisherCode, episodeId) {
             $('#novel_p').html(),
             $('#novel_honbun').html(),
             $('#novel_a').html()
-        ].join('<hr>');
+        ].filter((n) => !!n).join('<hr class="border-comment">');
 
         return ({
             id: `${publisherType}__${publisherCode}__${episodeId}`,
