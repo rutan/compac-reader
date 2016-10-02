@@ -53,3 +53,27 @@ export function updateBookmark(publisherType, publisherCode, episodeId, pageRate
         });
     });
 }
+
+export function remove(publisherType, publisherCode) {
+    const id = `${publisherType}__${publisherCode}`;
+    return new Promise((resolve) => {
+        const story = Record.realm.objects('Story').filtered('id == $0', id)[0];
+
+        if (story) {
+            Record.realm.write(() => {
+                const episodeContents =
+                    Array.from(story.episodes)
+                        .filter((episode) => episode.downloadedAt > 0)
+                        .map((episode) => {
+                            return Record.realm.objects('EpisodeContent').filtered('id == $0', episode.id)[0];
+                        });
+                Record.realm.delete(episodeContents);
+                Record.realm.delete(story.episodes);
+                Record.realm.delete(story);
+                resolve();
+            });
+        } else {
+            resolve();
+        }
+    });
+}

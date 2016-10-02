@@ -129,7 +129,7 @@ class StoryScreen extends React.Component {
     }
 
     _onNavigatorEvent(e) {
-        const {dispatch, publisherType, publisherCode} = this.props;
+        const {dispatch, navigator, publisherType, publisherCode} = this.props;
 
         if (e.type !== 'NavBarButtonPress') return;
         switch (e.id) {
@@ -137,6 +137,8 @@ class StoryScreen extends React.Component {
                 dispatch(ReadingEpisodeAction.downloadAll(publisherType, publisherCode));
                 break;
             case 'remove':
+                dispatch(StoryAction.remove(publisherType, publisherCode));
+                navigator.pop();
                 break;
         }
     }

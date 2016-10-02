@@ -63,3 +63,12 @@ export function updateBookmark(publisherType, publisherCode, episodeId, pageRate
             });
     };
 }
+
+export function remove(publisherType, publisherCode) {
+    return (dispatch) => {
+        StoryAPI.remove(publisherType, publisherCode)
+            .then(() => {
+                dispatch(loadAll());
+            });
+    };
+}
