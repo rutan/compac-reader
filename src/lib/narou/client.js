@@ -1,4 +1,5 @@
 import * as httpClient from '../http-client';
+import cheerio from 'cheerio';
 
 const publisherType = 'narou';
 const NCODE_URL_BASE = 'http://ncode.syosetu.com';
@@ -72,11 +73,35 @@ export function fetchEpisode(publisherCode, episodeId) {
     return httpClient.fetchHTML(url).then(($) => {
         const title = $('.novel_subtitle').text();
         const body = [
-            $('#novel_p').html(),
-            $('#novel_honbun').html(),
-            $('#novel_a').html()
-        ].filter((n) => !!n).join('<hr class="border-comment">');
-
+            $('#novel_p'),
+            $('#novel_honbun'),
+            $('#novel_a')
+        ]
+            .map((el) => {
+                el.find('a').replaceWith((_, tag) => $(tag).html());
+                return el.html();
+            })
+            .filter((n) => !!n)
+            .join('<hr class="border-comment">');
+        return {title, body};
+    }).then((result) => {
+        const { title, body } = result;
+        const $ = cheerio.load(body);
+        const images = $('img');
+        return Promise.all(images.map((_, image) => {
+            const url = $(image).attr('src');
+            return httpClient.fetchBlobBase64(url).then((base64) => {
+                return `data:image/png;base64,${base64}`;
+            });
+        })).then((base64Urls) => {
+            $('img').attr('src', (i) => base64Urls[i]);
+            return {
+                title,
+                body: $.html()
+            };
+        });
+    }).then((result) => {
+        const { title, body } = result;
         return ({
             id: `${publisherType}__${publisherCode}__${episodeId}`,
             publisherType,

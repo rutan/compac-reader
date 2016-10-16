@@ -1,5 +1,6 @@
 export default function (text) {
     const element = convertElement(text);
+    wrappingImageNode(element);
     const textNodes = Array.prototype.concat.apply([], extractTextNode(element));
     textNodes.forEach((node) => replaceTextNode(node));
     return element.innerHTML;
@@ -9,6 +10,17 @@ function convertElement(text) {
     const element = document.createElement('div');
     element.innerHTML = text;
     return element;
+}
+
+function wrappingImageNode(element) {
+    Array.from(element.childNodes).map((node) => {
+        if (node.nodeName !== 'IMG') return;
+        const wrapper = document.createElement('div');
+        wrapper.classList.add('illust');
+        node.parentNode.insertBefore(wrapper, node);
+        node.parentNode.removeChild(node);
+        wrapper.appendChild(node);
+    });
 }
 
 function extractTextNode(element) {

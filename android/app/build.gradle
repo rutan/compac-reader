@@ -138,6 +138,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-fetch-blob')
     compile project(':realm')
     compile project(':react-native-webview-bridge')
     compile project(':react-native-linear-gradient')

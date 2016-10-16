@@ -60,6 +60,7 @@ export default class Sheet extends React.Component {
             if (!node) node = nodes.shift();
             content.appendChild(node);
             if (content.getBoundingClientRect().width >= pageWidth) {
+                console.log('broken!', node.nodeName);
                 content.removeChild(content.lastChild);
 
                 const oldContent = content;
