@@ -56,6 +56,7 @@ export function fetchStory(publisherCode) {
             title,
             authorName,
             description,
+            icon: 'https://facebook.github.io/react/img/logo_og.png',
             episodes
         });
     });

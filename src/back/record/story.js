@@ -7,6 +7,7 @@ export default class Story {
             title: 'string',
             authorName: 'string',
             description: 'string',
+            icon: 'string',
             lastUpdatedAt: {type: 'int', indexed: true, default: 0},
             episodes: {type: 'list', objectType: 'Episode'},
             bookmark: 'Bookmark'
@@ -34,6 +35,7 @@ export default class Story {
             title: this.title,
             authorName: this.authorName,
             description: this.description,
+            icon: this.icon,
             lastUpdatedAt: this.lastUpdatedAt,
             episodes: this.episodes
                 .sorted('index', false)

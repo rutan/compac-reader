@@ -64,6 +64,15 @@ export function updateBookmark(publisherType, publisherCode, episodeId, pageRate
     };
 }
 
+export function attachIcon(publisherType, publisherCode, base64Image) {
+    return (dispatch) => {
+        StoryAPI.attachIcon(publisherType, publisherCode, base64Image)
+            .then(() => {
+                dispatch(loadAll());
+            });
+    };
+}
+
 export function remove(publisherType, publisherCode) {
     return (dispatch) => {
         StoryAPI.remove(publisherType, publisherCode)

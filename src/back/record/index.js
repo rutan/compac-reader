@@ -11,7 +11,7 @@ const realm = new Realm({
         EpisodeContent,
         Bookmark
     ],
-    schemaVersion: 8,
+    schemaVersion: 9,
     migration: (_oldRealm, newRealm) => {
         newRealm.deleteAll();
     }

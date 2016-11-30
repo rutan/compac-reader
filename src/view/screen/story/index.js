@@ -79,7 +79,7 @@ class StoryScreen extends React.Component {
     _renderContent(story) {
         return (
             <View>
-                <StoryHeader story={story}/>
+                <StoryHeader story={story} onSelectImage={this._onSelectImage.bind(this)}/>
                 <StoryAbstract story={story}/>
                 <StoryEpisodes
                     episodes={story.episodes || []}
@@ -141,6 +141,11 @@ class StoryScreen extends React.Component {
                 navigator.pop();
                 break;
         }
+    }
+
+    _onSelectImage(image) {
+        const {dispatch, publisherType, publisherCode} = this.props;
+        dispatch(StoryAction.attachIcon(publisherType, publisherCode, image));
     }
 }
 

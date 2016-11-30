@@ -28,7 +28,7 @@ export default class StoryItem extends React.Component {
                 <View style={styles.container}>
                     <Image
                         style={styles.image}
-                        source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
+                        source={{uri: story.icon}}
                     />
                     <View style={styles.info}>
                         <Text

@@ -54,6 +54,17 @@ export function updateBookmark(publisherType, publisherCode, episodeId, pageRate
     });
 }
 
+export function attachIcon(publisherType, publisherCode, base64Image) {
+    const id = `${publisherType}__${publisherCode}`;
+    return new Promise((resolve) => {
+        const story = Record.realm.objects('Story').filtered('id == $0', id)[0];
+        Record.realm.write(() => {
+            story.icon = base64Image;
+            resolve(story.toObject());
+        });
+    });
+}
+
 export function remove(publisherType, publisherCode) {
     const id = `${publisherType}__${publisherCode}`;
     return new Promise((resolve) => {
