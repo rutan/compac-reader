@@ -49,6 +49,21 @@ export function fetchStory(publisherCode) {
             }
         }).get();
 
+        // 短編
+        if ($('#novel_honbun').length > 0) {
+            const publishedAt = new Date($('meta[name="WWWC"]').attr('content')).getTime();
+            episodes.push({
+                id: `${storyId}__0`,
+                storyId,
+                type: 'episode',
+                episodeId: 0,
+                title,
+                publishedAt: publishedAt,
+                revisedAt: publishedAt,
+                index: 0
+            });
+        }
+
         return ({
             id: storyId,
             publisherType,
@@ -69,10 +84,16 @@ export function fetchStory(publisherCode) {
  * @returns {*|Promise.<T>}
  */
 export function fetchEpisode(publisherCode, episodeId) {
-    const url = `${NCODE_URL_BASE}/${publisherCode}/${episodeId}/`;
+    const url = (() => {
+        if (episodeId > 0) {
+            return `${NCODE_URL_BASE}/${publisherCode}/${episodeId}/`;
+        } else {
+            return `${NCODE_URL_BASE}/${publisherCode}/`;
+        }
+    })();
 
     return httpClient.fetchHTML(url).then(($) => {
-        const title = $('.novel_subtitle').text();
+        const title = $('.novel_subtitle').text() || $('.novel_title').text();
         const body = [
             $('#novel_p'),
             $('#novel_honbun'),
