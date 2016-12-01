@@ -15,7 +15,7 @@
     "react": "15.4.1",
     "react-native": "0.38.0",
     "react-native-fetch-blob": "^0.10.0",
-    "react-native-image-crop-picker": "^0.10.5",
+    "react-native-image-crop-picker": "git@github.com:ivpusic/react-native-image-crop-picker.git#0e7f318cb5beb0fd32331a2c0bed73a10e9e8c79",
     "react-native-linear-gradient": "^1.5.12",
     "react-native-navigation": "git@github.com:wix/react-native-navigation.git#5580a6ee3c176c605a6abb13dddf7dca8a913d7d",
     "react-native-slider": "^0.9.1",

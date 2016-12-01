@@ -1,3 +1,5 @@
+import * as Image from '../../config/image.js';
+
 export default class Story {
     static schema = {
         name: 'Story',
@@ -22,6 +24,10 @@ export default class Story {
         return this.parseId()[1];
     }
 
+    getIcon() {
+        return this.icon && this.icon.length > 0 ? this.icon : Image.defaultIcon;
+    }
+
     parseId() {
         const [publisherType, publisherCode] = this.id.split('__');
         return [publisherType, publisherCode];
@@ -35,7 +41,7 @@ export default class Story {
             title: this.title,
             authorName: this.authorName,
             description: this.description,
-            icon: this.icon,
+            icon: this.getIcon(),
             lastUpdatedAt: this.lastUpdatedAt,
             episodes: this.episodes
                 .sorted('index', false)

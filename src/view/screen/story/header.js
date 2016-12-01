@@ -56,9 +56,12 @@ export default class StoryHeader extends React.Component {
             width: 256,
             height: 256,
             cropping: true,
-            includeBase64: true
+            includeBase64: true,
+            cropperTintColor: color.theme
         }).then((image) => {
             onSelectImage(`data:${image.mime};base64,${image.data}`);
+        }).catch((e) => {
+            console.log(e);
         });
     }
 }
@@ -72,7 +75,7 @@ const styles = StyleSheet.create({
     image: {
         width: 72,
         height: 72,
-        borderRadius: 4
+        borderRadius: 36
     },
     info: {
         flex: 1,

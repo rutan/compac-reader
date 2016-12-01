@@ -14,6 +14,18 @@ export function refreshAll() {
 
 export function fetch(publisherType, publisherCode) {
     return new Promise((resolve, _reject) => {
+        const id = `${publisherType}__${publisherCode}`;
+        const oldStory = Record.realm.objects('Story').filtered('id == $0', id)[0];
+        const oldData = (() => {
+            if (oldStory) {
+                return {
+                    icon: oldStory.icon
+                };
+            } else {
+                return {};
+            }
+        })();
+
         ServiceClient.fetchStory(publisherType, publisherCode)
             .then((data) => {
                 Record.realm.write(() => {
@@ -21,8 +33,8 @@ export function fetch(publisherType, publisherCode) {
                     Record.realm.delete(oldHeader);
 
                     const story = Record.realm.create('Story', Object.assign({
-                        id: `${publisherType}__${publisherCode}`
-                    }, data), true);
+                        id
+                    }, data, oldData), true);
 
                     const newestEpisode = story.episodes.sorted('revisedAt', true)[0];
                     if (newestEpisode) story.lastUpdatedAt = newestEpisode.revisedAt;

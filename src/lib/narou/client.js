@@ -56,7 +56,7 @@ export function fetchStory(publisherCode) {
             title,
             authorName,
             description,
-            icon: 'https://facebook.github.io/react/img/logo_og.png',
+            icon: '',
             episodes
         });
     });
@@ -86,7 +86,7 @@ export function fetchEpisode(publisherCode, episodeId) {
             .join('<hr class="border-comment">');
         return {title, body};
     }).then((result) => {
-        const { title, body } = result;
+        const {title, body} = result;
         const $ = cheerio.load(body);
         const images = $('img');
         return Promise.all(images.map((_, image) => {
@@ -102,7 +102,7 @@ export function fetchEpisode(publisherCode, episodeId) {
             };
         });
     }).then((result) => {
-        const { title, body } = result;
+        const {title, body} = result;
         return ({
             id: `${publisherType}__${publisherCode}__${episodeId}`,
             publisherType,
