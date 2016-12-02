@@ -1,14 +1,15 @@
 import React from 'react';
 import {
     StyleSheet,
-    View
+    View,
+    TouchableOpacity
 } from 'react-native';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import WebViewBridge from 'react-native-webview-bridge';
 
-import {screenNames} from '../../../config/router';
 import color from '../../../config/color';
+import {screenNames} from '../../../config/router';
 
 import FloatingButton from '../../component/floating-button';
 
@@ -42,9 +43,26 @@ class BrowsingScreen extends React.Component {
         return (
             <View style={styles.container}>
                 <WebViewBridge
+                    ref="webView"
                     source={{uri: settings.uri}}
                     onNavigationStateChange={this._onNavigationStateChange.bind(this)}
                 />
+                <View
+                    style={styles.footerBar}
+                >
+                    <TouchableOpacity
+                        style={styles.footerButton}
+                        onPress={this._onPressBack.bind(this)}
+                    >
+                        <Ionicon name="md-arrow-back" size={30} color="#ffffff"/>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.footerButton}
+                        onPress={this._onPressForward.bind(this)}
+                    >
+                        <Ionicon name="md-arrow-forward" size={30} color="#ffffff"/>
+                    </TouchableOpacity>
+                </View>
                 <FloatingButton
                     style={styles.floatingButton}
                     onPress={this._onPressDownloadButton.bind(this)}
@@ -54,6 +72,14 @@ class BrowsingScreen extends React.Component {
                 </FloatingButton>
             </View>
         );
+    }
+
+    _onPressBack() {
+        this.refs['webView'].goBack();
+    }
+
+    _onPressForward() {
+        this.refs['webView'].goForward();
     }
 
     _onPressDownloadButton() {
@@ -84,10 +110,17 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#ffffff'
     },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5
+    footerBar: {
+        height: 50,
+        paddingLeft: 10,
+        paddingRight: 80,
+        backgroundColor: color.theme,
+        flexDirection: 'row'
+    },
+    footerButton: {
+        width: 50,
+        height: 50,
+        padding: 10
     },
     floatingButton: {
         position: 'absolute',
