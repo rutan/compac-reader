@@ -24,12 +24,10 @@ export default class StoryAbstract extends React.Component {
     }
 
     render() {
-        const {
-            story
-            } = this.props;
-        const {
-            isOpen
-            } = this.state;
+        const {story} = this.props;
+        const {isOpen} = this.state;
+
+        if (!story.description || story.description.length === 0) return null;
 
         return (
             <View style={styles.container}>
@@ -89,7 +87,8 @@ const bodyMaxHeight = 80;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: color.back
+        backgroundColor: color.back,
+        paddingBottom: 15
     },
     bodyWithOpen: {},
     bodyWithClose: {
@@ -118,7 +117,7 @@ const styles = StyleSheet.create({
     },
     openText: {
         position: 'absolute',
-        bottom: 5,
+        bottom: 0,
         left: 0,
         right: 0,
         color: color.theme,
