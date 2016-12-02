@@ -9,7 +9,10 @@ export function loadAll() {
 }
 
 export function refreshAll() {
-    return loadAll();
+    return loadAll().then((stories) => {
+        const list = stories.map((story) => fetch(story.publisherType, story.publisherCode));
+        return Promise.all(list);
+    });
 }
 
 export function fetch(publisherType, publisherCode) {
