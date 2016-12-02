@@ -12,6 +12,7 @@ import color from '../../../config/color';
 import url from '../../../config/url';
 
 import logoImage from './img/logo.png';
+import packageJSON from '../../../../package.json';
 
 class VersionScreen extends React.Component {
     static navigatorStyle = {
@@ -42,7 +43,7 @@ class VersionScreen extends React.Component {
                     <Text
                         style={styles.listText}
                     >
-                        バージョン 1.0.0
+                        バージョン v.{packageJSON.version}
                     </Text>
                 </View>
                 <TouchableNativeFeedback
