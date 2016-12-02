@@ -5,7 +5,7 @@ import {
     ScrollView,
     RefreshControl
 } from 'react-native';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 
 import {screenNames} from '../../../config/router';
@@ -33,11 +33,13 @@ class HomeScreen extends React.Component {
                 title: 'バージョン情報',
                 showAsAction: 'never'
             },
-            {
-                id: 'settings',
-                title: '設定',
-                showAsAction: 'never'
-            },
+            /*
+             {
+             id: 'settings',
+             title: '設定',
+             showAsAction: 'never'
+             },
+             */
             {
                 id: 'refresh',
                 title: '小説を更新',
@@ -47,7 +49,7 @@ class HomeScreen extends React.Component {
     };
 
     componentDidMount() {
-        const { dispatch, navigator } = this.props;
+        const {dispatch, navigator} = this.props;
         navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
         setTimeout(() => {
             dispatch(StoryAction.loadAll());
@@ -58,7 +60,7 @@ class HomeScreen extends React.Component {
         const {
             stories,
             isLoading
-            } = this.props;
+        } = this.props;
 
         return (
             <View style={styles.container}>
@@ -109,7 +111,7 @@ class HomeScreen extends React.Component {
     }
 
     _onRefresh() {
-        const { dispatch } = this.props;
+        const {dispatch} = this.props;
         dispatch(StoryAction.refreshAll());
     }
 
@@ -122,8 +124,16 @@ class HomeScreen extends React.Component {
             case 'settings':
                 break;
             case 'version':
+                this._onOpenVersion();
                 break;
         }
+    }
+
+    _onOpenVersion() {
+        this.props.navigator.push({
+            screen: screenNames.version,
+            passProps: {}
+        });
     }
 }
 
