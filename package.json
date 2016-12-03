@@ -2,6 +2,7 @@
   "name": "CompacReader",
   "version": "0.0.1",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "reset-start": "./node_modules/react-native/packager/packager.sh start --reset-cache",
