@@ -80,6 +80,7 @@ class HomeScreen extends React.Component {
                         stories={stories}
                         onPress={this._onSelectStory.bind(this)}
                     />
+                    <View style={styles.dummyView}/>
                 </ScrollView>
                 <FloatingButton
                     style={styles.floatingButton}
@@ -142,10 +143,8 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#ffffff'
     },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5
+    dummyView: {
+        height: 60
     },
     floatingButton: {
         position: 'absolute',

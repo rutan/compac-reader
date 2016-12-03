@@ -32,11 +32,13 @@ class VersionScreen extends React.Component {
     render() {
         return (
             <ScrollView style={styles.container}>
-                <Image
-                    style={styles.image}
-                    source={logoImage}
-                    resizeMode="contain"
-                />
+                <View style={styles.logo}>
+                    <Image
+                        style={styles.image}
+                        source={logoImage}
+                        resizeMode="contain"
+                    />
+                </View>
                 <View
                     style={styles.listItem}
                 >
@@ -96,11 +98,15 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#f1f1f1'
     },
+    logo: {
+        flexDirection: 'row',
+        justifyContent: 'center'
+    },
     image: {
-        width: 360,
+        width: 340,
         height: 148,
         marginTop: 50,
-        marginBottom: 50,
+        marginBottom: 50
     },
     listItem: {
         backgroundColor: '#ffffff',

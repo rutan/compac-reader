@@ -78,7 +78,7 @@ export default class EpisodeItem extends React.Component {
         const {
             bookmark,
             episode
-            } = this.props;
+        } = this.props;
 
         if (bookmark.episodeId !== episode.episodeId) return null;
         return (
@@ -90,9 +90,9 @@ export default class EpisodeItem extends React.Component {
         const {episode} = this.props;
 
         if (episode.isRead) {
-            return <Ionicon name='md-checkmark' size={14} color={color.theme} />;
+            return <Ionicon name='md-checkmark' size={14} color={color.theme}/>;
         } else if (episode.isDownload) {
-            return <Ionicon name='md-book' size={14} color={color.textLight} />;
+            return <Ionicon name='md-book' size={14} color={color.textLight}/>;
         } else {
             return null;
         }
@@ -102,19 +102,24 @@ export default class EpisodeItem extends React.Component {
         const {
             episode,
             onPress
-            } = this.props;
+        } = this.props;
 
         onPress(episode);
     }
 }
+
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: color.back,
         height: 60,
+        paddingTop: 10,
+        paddingBottom: 10,
+        paddingLeft: 15,
+        paddingRight: 15,
         borderBottomWidth: 1,
-        borderBottomColor: '#eee'
+        borderBottomColor: '#eeeeee'
     },
     bookmark: {
         position: 'absolute',
@@ -127,24 +132,21 @@ const styles = StyleSheet.create({
     title: {
         color: color.text,
         fontSize: 17,
-        lineHeight: 25,
-        marginTop: 10,
-        marginLeft: 20,
-        marginRight: 20
+        height: 17,
+        lineHeight: 17
     },
     titleGray: {
         color: color.textLight,
         fontSize: 17,
-        lineHeight: 25,
-        marginTop: 10,
-        marginLeft: 20,
-        marginRight: 20
+        height: 17,
+        lineHeight: 17
     },
     info: {
+        position: 'absolute',
+        bottom: 10,
+        left: 15,
         flexDirection: 'row',
-        marginTop: 5,
-        marginLeft: 20,
-        marginRight: 20
+        marginTop: 10
     },
     publishedAt: {
         color: color.textLight,

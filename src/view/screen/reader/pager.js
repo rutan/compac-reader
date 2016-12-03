@@ -27,17 +27,19 @@ export default class ReaderPager extends React.Component {
                         {pageMax}
                     </Text>
                 </View>
-                <Slider
-                    value={pageMax - page - 1}
-                    maximumValue={pageMax - 1}
-                    step={1}
-                    style={styles.slider}
-                    trackStyle={styles.sliderTrack}
-                    thumbStyle={styles.sliderThumb}
-                    minimumTrackTintColor='#444'
-                    maximumTrackTintColor={color.themeLight}
-                    onValueChange={this.onValueChange.bind(this)}
-                />
+                <View style={styles.sliderWrapper}>
+                    <Slider
+                        value={pageMax - page - 1}
+                        maximumValue={pageMax - 1}
+                        step={1}
+                        style={styles.slider}
+                        trackStyle={styles.sliderTrack}
+                        thumbStyle={styles.sliderThumb}
+                        minimumTrackTintColor='#444'
+                        maximumTrackTintColor={color.themeLight}
+                        onValueChange={this.onValueChange.bind(this)}
+                    />
+                </View>
                 <View style={styles.count}>
                     <Text style={styles.countText}>
                         {page + 1}
@@ -71,8 +73,10 @@ const styles = StyleSheet.create({
         color: '#fff',
         textAlign: 'center'
     },
-    slider: {
+    sliderWrapper: {
         flex: 1,
+    },
+    slider: {
         height: 56
     },
     sliderTrack: {
