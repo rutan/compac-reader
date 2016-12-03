@@ -12,6 +12,7 @@ export default function () {
         screen: {
             screen: screenNames.splash,
             navigatorStyle: {}
-        }
+        },
+        portraitOnlyMode: true
     });
 }
