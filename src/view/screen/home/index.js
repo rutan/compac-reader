@@ -2,6 +2,7 @@ import React from 'react';
 import {
     StyleSheet,
     View,
+    Text,
     ScrollView,
     RefreshControl
 } from 'react-native';
@@ -57,37 +58,54 @@ class HomeScreen extends React.Component {
     }
 
     render() {
-        const {
-            stories,
-            isLoading
-        } = this.props;
+        const {stories} = this.props;
 
         return (
             <View style={styles.container}>
                 <SectionHeader
                     title={`登録済みの小説 (${stories.length} 件)`}
                 />
-                <ScrollView
-                    refreshControl={
-                        <RefreshControl
-                            refreshing={isLoading}
-                            onRefresh={this._onRefresh.bind(this)}
-                            colors={[color.theme]}
-                        />
-                    }
-                >
-                    <StoryList
-                        stories={stories}
-                        onPress={this._onSelectStory.bind(this)}
-                    />
-                    <View style={styles.dummyView}/>
-                </ScrollView>
+                {stories.length > 0 ? this._renderList() : this._renderEmptyMessage()}
                 <FloatingButton
                     style={styles.floatingButton}
                     onPress={this._onPressAddButton.bind(this)}
                 >
                     <Ionicon name="md-add" size={30} color="#ffffff"/>
                 </FloatingButton>
+            </View>
+        );
+    }
+
+    _renderList() {
+        const {
+            stories,
+            isLoading
+        } = this.props;
+        return (
+            <ScrollView
+                refreshControl={
+                    <RefreshControl
+                        refreshing={isLoading}
+                        onRefresh={this._onRefresh.bind(this)}
+                        colors={[color.theme]}
+                    />
+                }
+            >
+                <StoryList
+                    stories={stories}
+                    onPress={this._onSelectStory.bind(this)}
+                />
+                <View style={styles.dummyView}/>
+            </ScrollView>
+        );
+    }
+
+    _renderEmptyMessage() {
+        return (
+            <View style={styles.messageView}>
+                <Text style={styles.messageText}>
+                    右下の「＋」から小説を追加してください
+                </Text>
             </View>
         );
     }
@@ -145,6 +163,15 @@ const styles = StyleSheet.create({
     },
     dummyView: {
         height: 60
+    },
+    messageView: {
+        flex: 1,
+        justifyContent: 'center'
+    },
+    messageText: {
+        color: color.theme,
+        fontSize: 14,
+        textAlign: 'center'
     },
     floatingButton: {
         position: 'absolute',
