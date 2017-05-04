@@ -136,7 +136,7 @@ export function fetchEpisode(publisherCode, episodeId) {
 }
 
 function parseDateFromString(str) {
-    const m = str.match(/(\d+)年\s*(\d+)月\s*(\d+)日/);
+    const m = str.match(/(\d+)(?:年|\/)\s*(\d+)(?:月|\/)\s*(\d+)日?/);
     if (!m) return 0;
     return Date.parse(`${m[1]}/${m[2]}/${m[3]}`) + (60 * 60 * 9);
 }
