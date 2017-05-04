@@ -82,21 +82,3 @@ html, body {
     }
   }
 }
-
-.reader {
-  padding: 0;
-  font-family: ipam;
-
-  &__container {
-    padding: 1em 0;
-    overflow-x: hidden;
-  }
-
-  &__body {
-    position: relative;
-    -webkit-writing-mode: vertical-rl;
-    writing-mode: vertical-rl;
-    -webkit-text-orientation: upright;
-    text-orientation: upright;
-  }
-}

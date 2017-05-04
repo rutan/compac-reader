@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "reset-start": "./node_modules/react-native/packager/packager.sh start --reset-cache",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "build:android": "cd android && ./gradlew assembleRelease"
   },
   "dependencies": {
     "buffer": "^5.0.1",

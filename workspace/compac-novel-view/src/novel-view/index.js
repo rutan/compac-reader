@@ -13,6 +13,7 @@ export default class CompacNovelView extends React.Component {
         backgroundColor: React.PropTypes.string.isRequired,
         textColor: React.PropTypes.string.isRequired,
         fontSize: React.PropTypes.number.isRequired,
+        letterSpacing: React.PropTypes.string.isRequired,
         fontName: React.PropTypes.string
     };
 
@@ -47,6 +48,7 @@ export default class CompacNovelView extends React.Component {
             backgroundColor,
             textColor,
             fontSize,
+            letterSpacing,
             fontName
             } = this.props;
 
@@ -55,6 +57,7 @@ export default class CompacNovelView extends React.Component {
             color: textColor,
             fontSize: `${fontSize}px`,
             fontFamily: fontName,
+            letterSpacing,
             lineHeight: 1.8,
             width: '100%',
             height: '100%',

@@ -14,6 +14,7 @@ class Wrapper extends React.Component {
             textColor: '#333333',
             fontSize: 18,
             fontName: 'CompacFont',
+            letterSpacing: '0.03em',
             version: 0
         };
         this.handler = () => {
@@ -30,6 +31,7 @@ class Wrapper extends React.Component {
                 textColor={this.state.textColor}
                 fontSize={this.state.fontSize}
                 fontName={this.state.fontName}
+                letterSpacing={this.state.letterSpacing}
                 version={this.state.version}
             />
         );
