@@ -32,7 +32,7 @@ export function fetchStory(publisherCode) {
                 };
             } else {
                 const episodeId = el.find('.subtitle a').attr('href').replace(`/${publisherCode}/`, '').replace('/', '');
-                const title = el.find('.subtitle').text();
+                const title = el.find('.subtitle').text().trim();
                 const luContents = el.find('.long_update').contents();
                 const publishedAt = parseDateFromString(luContents[0].data);
                 const revisedAt = luContents.length > 1 ? parseDateFromString($(luContents[1]).attr('title')) : publishedAt;
