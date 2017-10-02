@@ -1,0 +1,9 @@
+# Project-wide Gradle settings.
+
+android.useDeprecatedNdk=true
+
+# please replace to your key
+TORIPOTA_RELEASE_STORE_FILE=/path/to/release.keystore
+TORIPOTA_RELEASE_STORE_PASSWORD=storePassword
+TORIPOTA_RELEASE_KEY_ALIAS=myKeyAlias
+TORIPOTA_RELEASE_KEY_PASSWORD=keyPassword
