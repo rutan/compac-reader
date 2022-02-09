@@ -1,5 +1,9 @@
 # Compac Reader
 
+next generation -> https://github.com/compac-reader/compac-reader
+
+---------
+
 Compac Reader is a novel reader for Android.
 
 ## how to build
